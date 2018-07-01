@@ -37,7 +37,7 @@ public Object getYylval() {
 // ----------- CONSTANTES -----------
 
 ConstanteEntera = [0-9]+
-ConstanteHexadecimal = [0-9]+"H"|"0X"[0-9]+
+ConstanteHexadecimal = [0-9A-F]+"H"|"0X"[0-9A-F]+
 ConstanteBinaria = "0B"[0-1]+
 Registro = "R"[0-9]+
 ConstanteString = [A-Z][A-Z0-9]*
@@ -105,7 +105,7 @@ BRNS = "BRNS"
 
 // * Numero Binario
 {ConstanteBinaria}	{ 
-	this.yylval = new Integer(yytext());
+	this.yylval = new String(yytext());
 	return TokenInfo.NUMERO_BINARIO;  
 }
 
