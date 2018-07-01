@@ -1,27 +1,1014 @@
    0  $accept : program $end
 
    1  program : sentences
+
+   2  sentences :
+   3            | sentences sentence
+
+   4  sentence : expression
+   5           | label
+
+   6  label : "STRING" "LABEL"
+
+   7  expression : "NOP"
+   8             | "MOV" registro ',' registro
+   9             | "MOV" registro ',' '[' registro ']'
+  10             | "MOV" '[' registro ']' ',' registro
+  11             | "MOVL" registro ',' numeros
+  12             | "MOVH" registro ',' numeros
+  13             | "PUSH" registro
+  14             | "POP" registro
+  15             | "ADD" registro ',' registro ',' registro
+  16             | "SUB" registro ',' registro ',' registro
+  17             | "OR" registro ',' registro ',' registro
+  18             | "AND" registro ',' registro ',' registro
+  19             | "XOR" registro ',' registro ',' registro
+  20             | "CMP" registro ',' registro
+  21             | "NOT" registro
+  22             | "INC" registro
+  23             | "DEC" registro
+  24             | "NEG" registro
+  25             | "CLI"
+  26             | "STI"
+  27             | "INT" numeros
+  28             | "IRET"
+  29             | "JMP" numeros
+  30             | "JMP" "STRING"
+  31             | "JMP" registro
+  32             | "CALL" numeros
+  33             | "CALL" "STRING"
+  34             | "CALL" registro
+  35             | "RET"
+  36             | "BRC" numeros
+  37             | "BRC" "STRING"
+  38             | "BRNC" numeros
+  39             | "BRNC" "STRING"
+  40             | "BRO" numeros
+  41             | "BRO" "STRING"
+  42             | "BRNO" numeros
+  43             | "BRNO" "STRING"
+  44             | "BRZ" numeros
+  45             | "BRZ" "STRING"
+  46             | "BRNZ" numeros
+  47             | "BRNZ" "STRING"
+  48             | "BRS" numeros
+  49             | "BRS" "STRING"
+  50             | "BRNS" numeros
+  51             | "BRNS" "STRING"
+
+  52  registro : "REGISTRO"
+
+  53  numeros : "NUMERO_ENTERO"
+  54          | "NUMERO_HEXADECIMAL"
+  55          | "NUMERO_BINARIO"
 
 state 0
 	$accept : . program $end  (0)
+	sentences : .  (2)
 
-	sentences  shift 1
-	.  error
+	.  reduce 2
 
-	program  goto 2
+	program  goto 1
+	sentences  goto 2
 
 
 state 1
-	program : sentences .  (1)
-
-	.  reduce 1
-
-
-state 2
 	$accept : program . $end  (0)
 
 	$end  accept
 
 
-4 terminals, 2 nonterminals
-2 grammar rules, 3 states
+state 2
+	program : sentences .  (1)
+	sentences : sentences . sentence  (3)
+
+	"STRING"  shift 3
+	"NOP"  shift 4
+	"MOV"  shift 5
+	"MOVL"  shift 6
+	"MOVH"  shift 7
+	"PUSH"  shift 8
+	"POP"  shift 9
+	"ADD"  shift 10
+	"SUB"  shift 11
+	"OR"  shift 12
+	"AND"  shift 13
+	"XOR"  shift 14
+	"CMP"  shift 15
+	"NOT"  shift 16
+	"INC"  shift 17
+	"DEC"  shift 18
+	"NEG"  shift 19
+	"CLI"  shift 20
+	"STI"  shift 21
+	"INT"  shift 22
+	"IRET"  shift 23
+	"JMP"  shift 24
+	"CALL"  shift 25
+	"RET"  shift 26
+	"BRC"  shift 27
+	"BRNC"  shift 28
+	"BRO"  shift 29
+	"BRNO"  shift 30
+	"BRZ"  shift 31
+	"BRNZ"  shift 32
+	"BRS"  shift 33
+	"BRNS"  shift 34
+	$end  reduce 1
+
+	sentence  goto 35
+	expression  goto 36
+	label  goto 37
+
+
+state 3
+	label : "STRING" . "LABEL"  (6)
+
+	"LABEL"  shift 38
+	.  error
+
+
+state 4
+	expression : "NOP" .  (7)
+
+	.  reduce 7
+
+
+state 5
+	expression : "MOV" . registro ',' registro  (8)
+	expression : "MOV" . registro ',' '[' registro ']'  (9)
+	expression : "MOV" . '[' registro ']' ',' registro  (10)
+
+	'['  shift 39
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 41
+
+
+state 6
+	expression : "MOVL" . registro ',' numeros  (11)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 42
+
+
+state 7
+	expression : "MOVH" . registro ',' numeros  (12)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 43
+
+
+state 8
+	expression : "PUSH" . registro  (13)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 44
+
+
+state 9
+	expression : "POP" . registro  (14)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 45
+
+
+state 10
+	expression : "ADD" . registro ',' registro ',' registro  (15)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 46
+
+
+state 11
+	expression : "SUB" . registro ',' registro ',' registro  (16)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 47
+
+
+state 12
+	expression : "OR" . registro ',' registro ',' registro  (17)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 48
+
+
+state 13
+	expression : "AND" . registro ',' registro ',' registro  (18)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 49
+
+
+state 14
+	expression : "XOR" . registro ',' registro ',' registro  (19)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 50
+
+
+state 15
+	expression : "CMP" . registro ',' registro  (20)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 51
+
+
+state 16
+	expression : "NOT" . registro  (21)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 52
+
+
+state 17
+	expression : "INC" . registro  (22)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 53
+
+
+state 18
+	expression : "DEC" . registro  (23)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 54
+
+
+state 19
+	expression : "NEG" . registro  (24)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 55
+
+
+state 20
+	expression : "CLI" .  (25)
+
+	.  reduce 25
+
+
+state 21
+	expression : "STI" .  (26)
+
+	.  reduce 26
+
+
+state 22
+	expression : "INT" . numeros  (27)
+
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 59
+
+
+state 23
+	expression : "IRET" .  (28)
+
+	.  reduce 28
+
+
+state 24
+	expression : "JMP" . numeros  (29)
+	expression : "JMP" . "STRING"  (30)
+	expression : "JMP" . registro  (31)
+
+	"STRING"  shift 60
+	"REGISTRO"  shift 40
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	registro  goto 61
+	numeros  goto 62
+
+
+state 25
+	expression : "CALL" . numeros  (32)
+	expression : "CALL" . "STRING"  (33)
+	expression : "CALL" . registro  (34)
+
+	"STRING"  shift 63
+	"REGISTRO"  shift 40
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	registro  goto 64
+	numeros  goto 65
+
+
+state 26
+	expression : "RET" .  (35)
+
+	.  reduce 35
+
+
+state 27
+	expression : "BRC" . numeros  (36)
+	expression : "BRC" . "STRING"  (37)
+
+	"STRING"  shift 66
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 67
+
+
+state 28
+	expression : "BRNC" . numeros  (38)
+	expression : "BRNC" . "STRING"  (39)
+
+	"STRING"  shift 68
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 69
+
+
+state 29
+	expression : "BRO" . numeros  (40)
+	expression : "BRO" . "STRING"  (41)
+
+	"STRING"  shift 70
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 71
+
+
+state 30
+	expression : "BRNO" . numeros  (42)
+	expression : "BRNO" . "STRING"  (43)
+
+	"STRING"  shift 72
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 73
+
+
+state 31
+	expression : "BRZ" . numeros  (44)
+	expression : "BRZ" . "STRING"  (45)
+
+	"STRING"  shift 74
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 75
+
+
+state 32
+	expression : "BRNZ" . numeros  (46)
+	expression : "BRNZ" . "STRING"  (47)
+
+	"STRING"  shift 76
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 77
+
+
+state 33
+	expression : "BRS" . numeros  (48)
+	expression : "BRS" . "STRING"  (49)
+
+	"STRING"  shift 78
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 79
+
+
+state 34
+	expression : "BRNS" . numeros  (50)
+	expression : "BRNS" . "STRING"  (51)
+
+	"STRING"  shift 80
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 81
+
+
+state 35
+	sentences : sentences sentence .  (3)
+
+	.  reduce 3
+
+
+state 36
+	sentence : expression .  (4)
+
+	.  reduce 4
+
+
+state 37
+	sentence : label .  (5)
+
+	.  reduce 5
+
+
+state 38
+	label : "STRING" "LABEL" .  (6)
+
+	.  reduce 6
+
+
+state 39
+	expression : "MOV" '[' . registro ']' ',' registro  (10)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 82
+
+
+state 40
+	registro : "REGISTRO" .  (52)
+
+	.  reduce 52
+
+
+state 41
+	expression : "MOV" registro . ',' registro  (8)
+	expression : "MOV" registro . ',' '[' registro ']'  (9)
+
+	','  shift 83
+	.  error
+
+
+state 42
+	expression : "MOVL" registro . ',' numeros  (11)
+
+	','  shift 84
+	.  error
+
+
+state 43
+	expression : "MOVH" registro . ',' numeros  (12)
+
+	','  shift 85
+	.  error
+
+
+state 44
+	expression : "PUSH" registro .  (13)
+
+	.  reduce 13
+
+
+state 45
+	expression : "POP" registro .  (14)
+
+	.  reduce 14
+
+
+state 46
+	expression : "ADD" registro . ',' registro ',' registro  (15)
+
+	','  shift 86
+	.  error
+
+
+state 47
+	expression : "SUB" registro . ',' registro ',' registro  (16)
+
+	','  shift 87
+	.  error
+
+
+state 48
+	expression : "OR" registro . ',' registro ',' registro  (17)
+
+	','  shift 88
+	.  error
+
+
+state 49
+	expression : "AND" registro . ',' registro ',' registro  (18)
+
+	','  shift 89
+	.  error
+
+
+state 50
+	expression : "XOR" registro . ',' registro ',' registro  (19)
+
+	','  shift 90
+	.  error
+
+
+state 51
+	expression : "CMP" registro . ',' registro  (20)
+
+	','  shift 91
+	.  error
+
+
+state 52
+	expression : "NOT" registro .  (21)
+
+	.  reduce 21
+
+
+state 53
+	expression : "INC" registro .  (22)
+
+	.  reduce 22
+
+
+state 54
+	expression : "DEC" registro .  (23)
+
+	.  reduce 23
+
+
+state 55
+	expression : "NEG" registro .  (24)
+
+	.  reduce 24
+
+
+state 56
+	numeros : "NUMERO_ENTERO" .  (53)
+
+	.  reduce 53
+
+
+state 57
+	numeros : "NUMERO_HEXADECIMAL" .  (54)
+
+	.  reduce 54
+
+
+state 58
+	numeros : "NUMERO_BINARIO" .  (55)
+
+	.  reduce 55
+
+
+state 59
+	expression : "INT" numeros .  (27)
+
+	.  reduce 27
+
+
+state 60
+	expression : "JMP" "STRING" .  (30)
+
+	.  reduce 30
+
+
+state 61
+	expression : "JMP" registro .  (31)
+
+	.  reduce 31
+
+
+state 62
+	expression : "JMP" numeros .  (29)
+
+	.  reduce 29
+
+
+state 63
+	expression : "CALL" "STRING" .  (33)
+
+	.  reduce 33
+
+
+state 64
+	expression : "CALL" registro .  (34)
+
+	.  reduce 34
+
+
+state 65
+	expression : "CALL" numeros .  (32)
+
+	.  reduce 32
+
+
+state 66
+	expression : "BRC" "STRING" .  (37)
+
+	.  reduce 37
+
+
+state 67
+	expression : "BRC" numeros .  (36)
+
+	.  reduce 36
+
+
+state 68
+	expression : "BRNC" "STRING" .  (39)
+
+	.  reduce 39
+
+
+state 69
+	expression : "BRNC" numeros .  (38)
+
+	.  reduce 38
+
+
+state 70
+	expression : "BRO" "STRING" .  (41)
+
+	.  reduce 41
+
+
+state 71
+	expression : "BRO" numeros .  (40)
+
+	.  reduce 40
+
+
+state 72
+	expression : "BRNO" "STRING" .  (43)
+
+	.  reduce 43
+
+
+state 73
+	expression : "BRNO" numeros .  (42)
+
+	.  reduce 42
+
+
+state 74
+	expression : "BRZ" "STRING" .  (45)
+
+	.  reduce 45
+
+
+state 75
+	expression : "BRZ" numeros .  (44)
+
+	.  reduce 44
+
+
+state 76
+	expression : "BRNZ" "STRING" .  (47)
+
+	.  reduce 47
+
+
+state 77
+	expression : "BRNZ" numeros .  (46)
+
+	.  reduce 46
+
+
+state 78
+	expression : "BRS" "STRING" .  (49)
+
+	.  reduce 49
+
+
+state 79
+	expression : "BRS" numeros .  (48)
+
+	.  reduce 48
+
+
+state 80
+	expression : "BRNS" "STRING" .  (51)
+
+	.  reduce 51
+
+
+state 81
+	expression : "BRNS" numeros .  (50)
+
+	.  reduce 50
+
+
+state 82
+	expression : "MOV" '[' registro . ']' ',' registro  (10)
+
+	']'  shift 92
+	.  error
+
+
+state 83
+	expression : "MOV" registro ',' . registro  (8)
+	expression : "MOV" registro ',' . '[' registro ']'  (9)
+
+	'['  shift 93
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 94
+
+
+state 84
+	expression : "MOVL" registro ',' . numeros  (11)
+
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 95
+
+
+state 85
+	expression : "MOVH" registro ',' . numeros  (12)
+
+	"NUMERO_ENTERO"  shift 56
+	"NUMERO_HEXADECIMAL"  shift 57
+	"NUMERO_BINARIO"  shift 58
+	.  error
+
+	numeros  goto 96
+
+
+state 86
+	expression : "ADD" registro ',' . registro ',' registro  (15)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 97
+
+
+state 87
+	expression : "SUB" registro ',' . registro ',' registro  (16)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 98
+
+
+state 88
+	expression : "OR" registro ',' . registro ',' registro  (17)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 99
+
+
+state 89
+	expression : "AND" registro ',' . registro ',' registro  (18)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 100
+
+
+state 90
+	expression : "XOR" registro ',' . registro ',' registro  (19)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 101
+
+
+state 91
+	expression : "CMP" registro ',' . registro  (20)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 102
+
+
+state 92
+	expression : "MOV" '[' registro ']' . ',' registro  (10)
+
+	','  shift 103
+	.  error
+
+
+state 93
+	expression : "MOV" registro ',' '[' . registro ']'  (9)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 104
+
+
+state 94
+	expression : "MOV" registro ',' registro .  (8)
+
+	.  reduce 8
+
+
+state 95
+	expression : "MOVL" registro ',' numeros .  (11)
+
+	.  reduce 11
+
+
+state 96
+	expression : "MOVH" registro ',' numeros .  (12)
+
+	.  reduce 12
+
+
+state 97
+	expression : "ADD" registro ',' registro . ',' registro  (15)
+
+	','  shift 105
+	.  error
+
+
+state 98
+	expression : "SUB" registro ',' registro . ',' registro  (16)
+
+	','  shift 106
+	.  error
+
+
+state 99
+	expression : "OR" registro ',' registro . ',' registro  (17)
+
+	','  shift 107
+	.  error
+
+
+state 100
+	expression : "AND" registro ',' registro . ',' registro  (18)
+
+	','  shift 108
+	.  error
+
+
+state 101
+	expression : "XOR" registro ',' registro . ',' registro  (19)
+
+	','  shift 109
+	.  error
+
+
+state 102
+	expression : "CMP" registro ',' registro .  (20)
+
+	.  reduce 20
+
+
+state 103
+	expression : "MOV" '[' registro ']' ',' . registro  (10)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 110
+
+
+state 104
+	expression : "MOV" registro ',' '[' registro . ']'  (9)
+
+	']'  shift 111
+	.  error
+
+
+state 105
+	expression : "ADD" registro ',' registro ',' . registro  (15)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 112
+
+
+state 106
+	expression : "SUB" registro ',' registro ',' . registro  (16)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 113
+
+
+state 107
+	expression : "OR" registro ',' registro ',' . registro  (17)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 114
+
+
+state 108
+	expression : "AND" registro ',' registro ',' . registro  (18)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 115
+
+
+state 109
+	expression : "XOR" registro ',' registro ',' . registro  (19)
+
+	"REGISTRO"  shift 40
+	.  error
+
+	registro  goto 116
+
+
+state 110
+	expression : "MOV" '[' registro ']' ',' registro .  (10)
+
+	.  reduce 10
+
+
+state 111
+	expression : "MOV" registro ',' '[' registro ']' .  (9)
+
+	.  reduce 9
+
+
+state 112
+	expression : "ADD" registro ',' registro ',' registro .  (15)
+
+	.  reduce 15
+
+
+state 113
+	expression : "SUB" registro ',' registro ',' registro .  (16)
+
+	.  reduce 16
+
+
+state 114
+	expression : "OR" registro ',' registro ',' registro .  (17)
+
+	.  reduce 17
+
+
+state 115
+	expression : "AND" registro ',' registro ',' registro .  (18)
+
+	.  reduce 18
+
+
+state 116
+	expression : "XOR" registro ',' registro ',' registro .  (19)
+
+	.  reduce 19
+
+
+42 terminals, 8 nonterminals
+56 grammar rules, 117 states
