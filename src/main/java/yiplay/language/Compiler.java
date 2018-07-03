@@ -15,6 +15,7 @@ public class Compiler {
 		Lexicon lexico = new Lexicon(reader);
 		Parser parser = new Parser(lexico);
 		parser.run();
+		
 		return 0;
 	}
 	

@@ -19,8 +19,12 @@ package yiplay.language.syntactic;
 
 //#line 2 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
 import yiplay.language.lexicon.*;
+import yiplay.language.ast.*;
+import yiplay.language.ast.statement.*;
+import yiplay.language.ast.expression.*;
+import java.util.ArrayList;
 import java.io.Reader;
-//#line 20 "Parser.java"
+//#line 24 "Parser.java"
 
 
 
@@ -333,66 +337,67 @@ null,null,null,null,null,null,"\"STRING\"","\"LABEL\"","\"NOP\"","\"MOV\"",
 };
 final static String yyrule[] = {
 "$accept : program",
-"program : sentences",
-"sentences :",
-"sentences : sentences sentence",
-"sentence : expression",
-"sentence : label",
+"program : statements",
+"statements :",
+"statements : statements statement",
+"statement : instructions",
+"statement : label",
 "label : \"STRING\" \"LABEL\"",
-"expression : \"NOP\"",
-"expression : \"MOV\" registro ',' registro",
-"expression : \"MOV\" registro ',' '[' registro ']'",
-"expression : \"MOV\" '[' registro ']' ',' registro",
-"expression : \"MOVL\" registro ',' numeros",
-"expression : \"MOVH\" registro ',' numeros",
-"expression : \"PUSH\" registro",
-"expression : \"POP\" registro",
-"expression : \"ADD\" registro ',' registro ',' registro",
-"expression : \"SUB\" registro ',' registro ',' registro",
-"expression : \"OR\" registro ',' registro ',' registro",
-"expression : \"AND\" registro ',' registro ',' registro",
-"expression : \"XOR\" registro ',' registro ',' registro",
-"expression : \"CMP\" registro ',' registro",
-"expression : \"NOT\" registro",
-"expression : \"INC\" registro",
-"expression : \"DEC\" registro",
-"expression : \"NEG\" registro",
-"expression : \"CLI\"",
-"expression : \"STI\"",
-"expression : \"INT\" numeros",
-"expression : \"IRET\"",
-"expression : \"JMP\" numeros",
-"expression : \"JMP\" \"STRING\"",
-"expression : \"JMP\" registro",
-"expression : \"CALL\" numeros",
-"expression : \"CALL\" \"STRING\"",
-"expression : \"CALL\" registro",
-"expression : \"RET\"",
-"expression : \"BRC\" numeros",
-"expression : \"BRC\" \"STRING\"",
-"expression : \"BRNC\" numeros",
-"expression : \"BRNC\" \"STRING\"",
-"expression : \"BRO\" numeros",
-"expression : \"BRO\" \"STRING\"",
-"expression : \"BRNO\" numeros",
-"expression : \"BRNO\" \"STRING\"",
-"expression : \"BRZ\" numeros",
-"expression : \"BRZ\" \"STRING\"",
-"expression : \"BRNZ\" numeros",
-"expression : \"BRNZ\" \"STRING\"",
-"expression : \"BRS\" numeros",
-"expression : \"BRS\" \"STRING\"",
-"expression : \"BRNS\" numeros",
-"expression : \"BRNS\" \"STRING\"",
+"instructions : \"NOP\"",
+"instructions : \"MOV\" registro ',' registro",
+"instructions : \"MOV\" registro ',' '[' registro ']'",
+"instructions : \"MOV\" '[' registro ']' ',' registro",
+"instructions : \"MOVL\" registro ',' numeros",
+"instructions : \"MOVH\" registro ',' numeros",
+"instructions : \"PUSH\" registro",
+"instructions : \"POP\" registro",
+"instructions : \"ADD\" registro ',' registro ',' registro",
+"instructions : \"SUB\" registro ',' registro ',' registro",
+"instructions : \"OR\" registro ',' registro ',' registro",
+"instructions : \"AND\" registro ',' registro ',' registro",
+"instructions : \"XOR\" registro ',' registro ',' registro",
+"instructions : \"CMP\" registro ',' registro",
+"instructions : \"NOT\" registro",
+"instructions : \"INC\" registro",
+"instructions : \"DEC\" registro",
+"instructions : \"NEG\" registro",
+"instructions : \"CLI\"",
+"instructions : \"STI\"",
+"instructions : \"INT\" numeros",
+"instructions : \"IRET\"",
+"instructions : \"JMP\" numeros",
+"instructions : \"JMP\" \"STRING\"",
+"instructions : \"JMP\" registro",
+"instructions : \"CALL\" numeros",
+"instructions : \"CALL\" \"STRING\"",
+"instructions : \"CALL\" registro",
+"instructions : \"RET\"",
+"instructions : \"BRC\" numeros",
+"instructions : \"BRC\" \"STRING\"",
+"instructions : \"BRNC\" numeros",
+"instructions : \"BRNC\" \"STRING\"",
+"instructions : \"BRO\" numeros",
+"instructions : \"BRO\" \"STRING\"",
+"instructions : \"BRNO\" numeros",
+"instructions : \"BRNO\" \"STRING\"",
+"instructions : \"BRZ\" numeros",
+"instructions : \"BRZ\" \"STRING\"",
+"instructions : \"BRNZ\" numeros",
+"instructions : \"BRNZ\" \"STRING\"",
+"instructions : \"BRS\" numeros",
+"instructions : \"BRS\" \"STRING\"",
+"instructions : \"BRNS\" numeros",
+"instructions : \"BRNS\" \"STRING\"",
 "registro : \"REGISTRO\"",
 "numeros : \"NUMERO_ENTERO\"",
 "numeros : \"NUMERO_HEXADECIMAL\"",
 "numeros : \"NUMERO_BINARIO\"",
 };
 
-//#line 80 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 84 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
 
 private Lexicon lexicon;
+private ASTNode ast;
 
 private int yylex () {
     int token=0;
@@ -414,7 +419,11 @@ public void yyerror (String error) {
 public Parser(Lexicon lexicon) {
 	this.lexicon = lexicon;
 }
-//#line 354 "Parser.java"
+
+public ASTNode getAST(){
+	return this.ast;
+}
+//#line 363 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -568,6 +577,227 @@ boolean doaction;
     switch(yyn)
       {
 //########## USER-SUPPLIED ACTIONS ##########
+case 1:
+//#line 16 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ this.ast = new Program(lexicon.getLine(), lexicon.getColumn(), (ArrayList<Statement>)val_peek(0)); }
+break;
+case 2:
+//#line 19 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new ArrayList<Statement>(); }
+break;
+case 3:
+//#line 20 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ ((ArrayList<Statement>)val_peek(1)).add((Statement)val_peek(0)); yyval = val_peek(1); }
+break;
+case 4:
+//#line 23 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = val_peek(0); }
+break;
+case 5:
+//#line 24 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = val_peek(0); }
+break;
+case 6:
+//#line 27 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Label(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(1)); }
+break;
+case 7:
+//#line 30 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Nop(lexicon.getLine(), lexicon.getColumn()); }
+break;
+case 8:
+//#line 31 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0), 0); }
+break;
+case 9:
+//#line 32 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(1), 1); }
+break;
+case 10:
+//#line 33 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(3), (Expression)val_peek(0), 2); }
+break;
+case 11:
+//#line 34 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Movl(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 12:
+//#line 35 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Movh(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 13:
+//#line 36 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Push(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 14:
+//#line 37 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Pop(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 15:
+//#line 38 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Add(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 16:
+//#line 39 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Sub(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 17:
+//#line 40 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Or(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 18:
+//#line 41 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new And(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 19:
+//#line 42 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Xor(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 20:
+//#line 43 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Cmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
+break;
+case 21:
+//#line 44 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Not(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 22:
+//#line 45 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Inc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 23:
+//#line 46 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Dec(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 24:
+//#line 47 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Neg(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 25:
+//#line 48 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Cli(lexicon.getLine(), lexicon.getColumn()); }
+break;
+case 26:
+//#line 49 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Sti(lexicon.getLine(), lexicon.getColumn()); }
+break;
+case 27:
+//#line 50 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Int(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 28:
+//#line 51 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Iret(lexicon.getLine(), lexicon.getColumn()); }
+break;
+case 29:
+//#line 52 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 0); }
+break;
+case 30:
+//#line 53 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 31:
+//#line 54 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 1); }
+break;
+case 32:
+//#line 55 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 0); }
+break;
+case 33:
+//#line 56 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 34:
+//#line 57 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 1); }
+break;
+case 35:
+//#line 58 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Ret(lexicon.getLine(), lexicon.getColumn()); }
+break;
+case 36:
+//#line 59 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 37:
+//#line 60 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brc(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 38:
+//#line 61 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brnc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 39:
+//#line 62 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brnc(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 40:
+//#line 63 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Bro(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 41:
+//#line 64 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Bro(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 42:
+//#line 65 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brno(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 43:
+//#line 66 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brno(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 44:
+//#line 67 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brz(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 45:
+//#line 68 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brz(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 46:
+//#line 69 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brnz(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 47:
+//#line 70 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brnz(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 48:
+//#line 71 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brs(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 49:
+//#line 72 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brs(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 50:
+//#line 73 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brns(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+break;
+case 51:
+//#line 74 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Brns(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 52:
+//#line 77 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new Register(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 53:
+//#line 79 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new IntegerLiteral(lexicon.getLine(), lexicon.getColumn(), (Integer)val_peek(0)); }
+break;
+case 54:
+//#line 80 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new HexLiteral(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 55:
+//#line 81 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+{ yyval = new BinaryLiteral(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+//#line 732 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####
