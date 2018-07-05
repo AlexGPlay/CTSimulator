@@ -3,6 +3,7 @@ import yiplay.language.lexicon.*;
 import yiplay.language.ast.*;
 import yiplay.language.ast.statement.*;
 import yiplay.language.ast.expression.*;
+import yiplay.language.errorManagement.*;
 import java.util.ArrayList;
 import java.io.Reader;
 %}
@@ -91,15 +92,13 @@ private int yylex () {
 		token=lexicon.yylex(); 	
 		this.yylval = lexicon.getYylval();
     } catch(Throwable e) {
-	    System.err.println ("Lexical Error on " + lexicon.getLine()+
-		":"+ lexicon.getColumn()+"\n\t"+e); 
+    	ErrorManager.getManager().addError(ErrorManager.LEXICAL, lexicon.getLine(), lexicon.getColumn(), (String)yylval);
     }
     return token;
 }
 
 public void yyerror (String error) {
-    System.err.println ("Syntactic Error " + lexicon.getYylval() + " on " + lexicon.getLine()+
-		":"+lexicon.getColumn()+":\n\t"+error);
+	ErrorManager.getManager().addError(ErrorManager.SYNTACTIC, lexicon.getLine(), lexicon.getColumn(), (String)lexicon.getYylval());
 }
 
 public Parser(Lexicon lexicon) {

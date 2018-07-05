@@ -2,6 +2,8 @@ package yiplay.language.ast;
 
 import java.util.List;
 
+import yiplay.language.visitor.Visitor;
+
 public class Program extends ASTAbstractNode{
 
 	private List<Statement> statements;
@@ -23,6 +25,27 @@ public class Program extends ASTAbstractNode{
 			text += statement + "\n";
 		
 		return text;
+	}
+
+	public Object accept(Visitor visitor, Object param) {
+		return visitor.visit(this, param);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Program))
+			return false;
+		
+		Program temp = (Program)obj;
+		
+		if(temp.getStatements().size() != this.getStatements().size())
+			return false;
+		
+		for(int i=0;i<statements.size();i++)
+			if(!statements.get(i).equals(temp.getStatements().get(i)))
+				return false;
+		
+		return true;
 	}
 
 }

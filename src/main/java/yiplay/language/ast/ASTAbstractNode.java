@@ -18,4 +18,7 @@ public abstract class ASTAbstractNode implements ASTNode{
 		return column;
 	}
 
+	public abstract String toString();
+	public abstract boolean equals(Object obj);
+	
 }

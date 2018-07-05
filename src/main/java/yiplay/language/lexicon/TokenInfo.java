@@ -30,7 +30,7 @@ public abstract class TokenInfo {
 	public static final short CLI = Parser.CLI;
 	public static final short STI = Parser.STI;
 	public static final short INT = Parser.INT;
-	public static final short IRET = Parser.INT;
+	public static final short IRET = Parser.IRET;
 	public static final short JMP = Parser.JMP;
 	public static final short CALL = Parser.CALL;
 	public static final short RET = Parser.RET;

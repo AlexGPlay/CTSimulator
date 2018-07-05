@@ -1,6 +1,5 @@
 package yiplay.language;
 
-import java.io.IOException;
 import java.io.StringReader;
 
 import yiplay.language.lexicon.Lexicon;
@@ -15,7 +14,7 @@ public class Compiler {
 		Lexicon lexico = new Lexicon(reader);
 		Parser parser = new Parser(lexico);
 		parser.run();
-		
+
 		return 0;
 	}
 	

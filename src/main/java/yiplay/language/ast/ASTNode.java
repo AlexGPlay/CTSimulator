@@ -1,8 +1,12 @@
 package yiplay.language.ast;
 
+import yiplay.language.visitor.Visitor;
+
 public interface ASTNode {
 
-	public int getLine();
-	public int getColumn();
+	int getLine();
+	int getColumn();
+	
+	Object accept(Visitor visitor, Object param);
 	
 }
