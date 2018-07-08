@@ -34,4 +34,14 @@ public class IntegerLiteral extends Expression{
 		return temp.getValue() == value;
 	}
 
+	@Override
+	public String translate() {
+		String toTranslate = Integer.toBinaryString(value);
+		
+		while(toTranslate.length() < 8)
+			toTranslate = "0" + toTranslate;
+		
+		return toTranslate;
+	}
+
 }

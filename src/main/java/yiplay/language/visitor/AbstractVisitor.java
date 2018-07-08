@@ -6,12 +6,17 @@ import yiplay.language.ast.statement.*;
 
 public abstract class AbstractVisitor implements Visitor{
 
+	// PROGRAM
+	
 	public Object visit(Program ast, Object param) {
 		for(Statement statement : ast.getStatements())
 			statement.accept(this, param);
 		
 		return null;
 	}
+	
+	
+	// EXPRESSIONS
 
 	public Object visit(BinaryLiteral ast, Object param) {
 		return ast.getValue();
@@ -36,6 +41,9 @@ public abstract class AbstractVisitor implements Visitor{
 		
 		return null;
 	}
+	
+	
+	// STATEMENTS
 
 	public Object visit(And ast, Object param) {
 		ast.getRd().accept(this, param);

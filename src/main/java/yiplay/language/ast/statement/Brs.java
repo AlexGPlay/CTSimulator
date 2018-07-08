@@ -28,16 +28,20 @@ public class Brs extends Statement{
 	public Expression getLines() {
 		return lines;
 	}
+	
+	public void setLines(Expression lines) {
+		this.lines = lines;
+	}
 
 	@Override
 	public String toString() {
 		String to;
 		
-		if(label != null)
-			to = label;
+		if(lines != null)
+			to = lines.toString();
 		
 		else
-			to = lines.toString();
+			to = label;
 		
 		return "Brs " + to;
 	}

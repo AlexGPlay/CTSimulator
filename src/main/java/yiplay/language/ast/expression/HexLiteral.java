@@ -33,5 +33,27 @@ public class HexLiteral extends Expression{
 		HexLiteral temp = (HexLiteral)obj;
 		return temp.getValue().equals(this.getValue());
 	}
+
+	@Override
+	public String translate() {
+		String toTranslate;
+		
+		if(value.matches("0H.*"))
+			toTranslate = value.substring(2);
+		
+		else if(value.matches(".*H"))
+			toTranslate = value.substring(0, value.length()-1);
+		
+		else
+			toTranslate = value;
+		
+		int decimal = Integer.parseInt(toTranslate, 16);
+		toTranslate = Integer.toBinaryString(decimal);
+		
+		while(toTranslate.length()<8)
+			toTranslate = "0" + toTranslate;
+		
+		return toTranslate;
+	}
 	
 }

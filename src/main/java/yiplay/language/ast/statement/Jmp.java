@@ -37,15 +37,23 @@ public class Jmp extends Statement{
 		return mode;
 	}
 	
+	public void setLines(Expression lines) {
+		this.lines = lines;
+	}
+	
+	public void setMode(int mode) {
+		this.mode = mode;
+	}
+	
 	@Override
 	public String toString() {
 		String to;
 		
-		if(label != null)
-			to = label;
+		if(lines != null)
+			to = lines.toString();
 		
 		else
-			to = lines.toString();
+			to = label;
 		
 		return "Jmp " + to;
 	}

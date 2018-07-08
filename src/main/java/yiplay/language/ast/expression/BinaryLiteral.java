@@ -34,4 +34,17 @@ public class BinaryLiteral extends Expression{
 		return temp.getValue().equals(this.getValue());
 	}
 
+	@Override
+	public String translate() {
+		String toTranslate = value;
+		
+		if(value.matches("0B.*"))
+			toTranslate = value.substring(2);
+		
+		while(toTranslate.length()<8)
+			toTranslate = "0" + toTranslate;
+		
+		return toTranslate;
+	}
+
 }

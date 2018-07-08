@@ -38,5 +38,15 @@ public class Register extends Expression{
 		Register temp = (Register)obj;
 		return temp.getRegister() == register;
 	}
+
+	@Override
+	public String translate() {
+		String toTranslate = Integer.toBinaryString(register);
+		
+		while(toTranslate.length() < 3)
+			toTranslate = "0" + toTranslate;
+		
+		return toTranslate;
+	}
 	
 }

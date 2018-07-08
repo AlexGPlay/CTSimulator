@@ -8,7 +8,6 @@ public abstract class TokenInfo {
 	public static final short NUMERO_HEXADECIMAL = Parser.NUMERO_HEXADECIMAL;
 	public static final short NUMERO_BINARIO = Parser.NUMERO_BINARIO;
 	public static final short STRING = Parser.STRING;
-	public static final short LABEL = Parser.LABEL;
 	public static final short REGISTRO = Parser.REGISTRO;
 	
 	public static final short NOP = Parser.NOP;

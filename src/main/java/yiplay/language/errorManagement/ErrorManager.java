@@ -7,6 +7,8 @@ public class ErrorManager {
 
 	public static final int LEXICAL = 0;
 	public static final int SYNTACTIC = 1;
+	public static final int LABEL = 2;
+	public static final int LENGTH = 3;
 	
 	public static ErrorManager manager;
 	
@@ -26,6 +28,10 @@ public class ErrorManager {
 		return errors;
 	}
 	
+	public void reset() {
+		errors.clear();
+	}
+	
 	public void addError(int type, int line, int column, Object desc) {
 		switch(type) {
 		case LEXICAL:
@@ -34,6 +40,14 @@ public class ErrorManager {
 		
 		case SYNTACTIC:
 			errors.add(new SyntacticError(line,column,desc));
+			break;
+		
+		case LABEL:
+			errors.add(new LabelError(line,column,desc));
+			break;
+			
+		case LENGTH:
+			errors.add(new LengthError(line,column,desc));
 			break;
 		}
 	}

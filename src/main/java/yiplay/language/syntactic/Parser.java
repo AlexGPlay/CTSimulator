@@ -155,42 +155,41 @@ final Object dup_yyval(Object val)
 }
 //#### end semantic value section ####
 public final static short STRING=257;
-public final static short LABEL=258;
-public final static short NOP=259;
-public final static short MOV=260;
-public final static short MOVL=261;
-public final static short MOVH=262;
-public final static short PUSH=263;
-public final static short POP=264;
-public final static short ADD=265;
-public final static short SUB=266;
-public final static short OR=267;
-public final static short AND=268;
-public final static short XOR=269;
-public final static short CMP=270;
-public final static short NOT=271;
-public final static short INC=272;
-public final static short DEC=273;
-public final static short NEG=274;
-public final static short CLI=275;
-public final static short STI=276;
-public final static short INT=277;
-public final static short IRET=278;
-public final static short JMP=279;
-public final static short CALL=280;
-public final static short RET=281;
-public final static short BRC=282;
-public final static short BRNC=283;
-public final static short BRO=284;
-public final static short BRNO=285;
-public final static short BRZ=286;
-public final static short BRNZ=287;
-public final static short BRS=288;
-public final static short BRNS=289;
-public final static short REGISTRO=290;
-public final static short NUMERO_ENTERO=291;
-public final static short NUMERO_HEXADECIMAL=292;
-public final static short NUMERO_BINARIO=293;
+public final static short NOP=258;
+public final static short MOV=259;
+public final static short MOVL=260;
+public final static short MOVH=261;
+public final static short PUSH=262;
+public final static short POP=263;
+public final static short ADD=264;
+public final static short SUB=265;
+public final static short OR=266;
+public final static short AND=267;
+public final static short XOR=268;
+public final static short CMP=269;
+public final static short NOT=270;
+public final static short INC=271;
+public final static short DEC=272;
+public final static short NEG=273;
+public final static short CLI=274;
+public final static short STI=275;
+public final static short INT=276;
+public final static short IRET=277;
+public final static short JMP=278;
+public final static short CALL=279;
+public final static short RET=280;
+public final static short BRC=281;
+public final static short BRNC=282;
+public final static short BRO=283;
+public final static short BRNO=284;
+public final static short BRZ=285;
+public final static short BRNZ=286;
+public final static short BRS=287;
+public final static short BRNS=288;
+public final static short REGISTRO=289;
+public final static short NUMERO_ENTERO=290;
+public final static short NUMERO_HEXADECIMAL=291;
+public final static short NUMERO_BINARIO=292;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
     0,    1,    1,    2,    2,    4,    3,    3,    3,    3,
@@ -226,17 +225,17 @@ final static short yydgoto[] = {                          1,
     2,   35,   36,   37,   41,   59,
 };
 final static short yysindex[] = {                         0,
-    0, -132, -234,    0,  -91, -267, -267, -267, -267, -267,
- -267, -267, -267, -267, -267, -267, -267, -267, -267,    0,
-    0, -274,    0, -241, -235,    0, -232, -229, -226, -185,
- -182, -179, -176, -169,    0,    0,    0,    0, -267,    0,
+    0, -130,  -35,    0,  -91, -265, -265, -265, -265, -265,
+ -265, -265, -265, -265, -265, -265, -265, -265, -265,    0,
+    0, -273,    0, -241, -235,    0, -232, -229, -226, -184,
+ -181, -177, -169, -166,    0,    0,    0,    0, -265,    0,
   -18,  -17,  -15,    0,    0,  -14,  -12,    1,    2,    3,
-    4,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    8,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,  -49,  -90, -274, -274, -267, -267, -267, -267, -267,
- -267,   10, -267,    0,    0,    0,   24,   25,   26,   27,
-   29,    0, -267,  -40, -267, -267, -267, -267, -267,    0,
+    0,  -49,  -90, -273, -273, -265, -265, -265, -265, -265,
+ -265,   23, -265,    0,    0,    0,   24,   25,   26,   27,
+   28,    0, -265,  -40, -265, -265, -265, -265, -265,    0,
     0,    0,    0,    0,    0,    0,
 };
 final static short yyrindex[] = {                         0,
@@ -256,31 +255,31 @@ final static short yyrindex[] = {                         0,
 final static short yygindex[] = {                         0,
     0,    0,    0,    0,   -4,    9,
 };
-final static int YYTABLESIZE=200;
+final static int YYTABLESIZE=199;
 static short yytable[];
 static { yytable();}
 static void yytable(){
 yytable = new short[]{                         39,
    93,   42,   43,   44,   45,   46,   47,   48,   49,   50,
    51,   52,   53,   54,   55,   60,   56,   57,   58,   61,
-   64,   63,   40,   38,   66,   83,   84,   68,   85,   86,
+   64,   63,   38,   40,   66,   83,   84,   68,   85,   86,
    70,   87,   62,   65,   82,   67,   69,   71,   73,   75,
-   77,   79,   81,   92,   88,   89,   90,   91,   40,   56,
-   57,   58,  111,  103,   40,   56,   57,   58,   56,   57,
-   58,   56,   57,   58,   56,   57,   58,  105,  106,  107,
-  108,   72,  109,    1,   74,    0,    0,   76,   94,    0,
-   78,   97,   98,   99,  100,  101,  102,   80,  104,    0,
-    0,    0,   95,   96,    0,    0,    0,    0,  110,    0,
+   77,   79,   81,   92,   88,   89,   90,   40,   56,   57,
+   58,   91,  111,   40,   56,   57,   58,   56,   57,   58,
+   56,   57,   58,   56,   57,   58,  103,  105,  106,  107,
+  108,  109,   72,    1,    0,   74,    0,    0,   94,   76,
+    0,   97,   98,   99,  100,  101,  102,   78,  104,    0,
+   80,    0,   95,   96,    0,    0,    0,    0,  110,    0,
   112,  113,  114,  115,  116,   56,   57,   58,   56,   57,
-   58,   56,   57,   58,   56,   57,   58,    0,    0,    0,
-    0,   56,   57,   58,    3,    0,    4,    5,    6,    7,
-    8,    9,   10,   11,   12,   13,   14,   15,   16,   17,
-   18,   19,   20,   21,   22,   23,   24,   25,   26,   27,
-   28,   29,   30,   31,   32,   33,   34,    0,    0,    0,
+   58,    0,   56,   57,   58,    0,    0,    0,    0,    0,
+   56,   57,   58,   56,   57,   58,    3,    4,    5,    6,
+    7,    8,    9,   10,   11,   12,   13,   14,   15,   16,
+   17,   18,   19,   20,   21,   22,   23,   24,   25,   26,
+   27,   28,   29,   30,   31,   32,   33,   34,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,   40,   40,
+    0,    0,    0,    0,    0,    0,    0,   40,   40,
 };
 }
 static short yycheck[];
@@ -288,53 +287,52 @@ static { yycheck(); }
 static void yycheck() {
 yycheck = new short[] {                         91,
    91,    6,    7,    8,    9,   10,   11,   12,   13,   14,
-   15,   16,   17,   18,   19,  257,  291,  292,  293,   24,
-   25,  257,  290,  258,  257,   44,   44,  257,   44,   44,
+   15,   16,   17,   18,   19,  257,  290,  291,  292,   24,
+   25,  257,   58,  289,  257,   44,   44,  257,   44,   44,
   257,   44,   24,   25,   39,   27,   28,   29,   30,   31,
-   32,   33,   34,   93,   44,   44,   44,   44,  290,  291,
-  292,  293,   93,   44,  290,  291,  292,  293,  291,  292,
-  293,  291,  292,  293,  291,  292,  293,   44,   44,   44,
-   44,  257,   44,    0,  257,   -1,   -1,  257,   83,   -1,
-  257,   86,   87,   88,   89,   90,   91,  257,   93,   -1,
-   -1,   -1,   84,   85,   -1,   -1,   -1,   -1,  103,   -1,
-  105,  106,  107,  108,  109,  291,  292,  293,  291,  292,
-  293,  291,  292,  293,  291,  292,  293,   -1,   -1,   -1,
-   -1,  291,  292,  293,  257,   -1,  259,  260,  261,  262,
-  263,  264,  265,  266,  267,  268,  269,  270,  271,  272,
-  273,  274,  275,  276,  277,  278,  279,  280,  281,  282,
-  283,  284,  285,  286,  287,  288,  289,   -1,   -1,   -1,
+   32,   33,   34,   93,   44,   44,   44,  289,  290,  291,
+  292,   44,   93,  289,  290,  291,  292,  290,  291,  292,
+  290,  291,  292,  290,  291,  292,   44,   44,   44,   44,
+   44,   44,  257,    0,   -1,  257,   -1,   -1,   83,  257,
+   -1,   86,   87,   88,   89,   90,   91,  257,   93,   -1,
+  257,   -1,   84,   85,   -1,   -1,   -1,   -1,  103,   -1,
+  105,  106,  107,  108,  109,  290,  291,  292,  290,  291,
+  292,   -1,  290,  291,  292,   -1,   -1,   -1,   -1,   -1,
+  290,  291,  292,  290,  291,  292,  257,  258,  259,  260,
+  261,  262,  263,  264,  265,  266,  267,  268,  269,  270,
+  271,  272,  273,  274,  275,  276,  277,  278,  279,  280,
+  281,  282,  283,  284,  285,  286,  287,  288,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  290,  290,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,  289,  289,
 };
 }
 final static short YYFINAL=1;
-final static short YYMAXTOKEN=293;
+final static short YYMAXTOKEN=292;
 final static String yyname[] = {
 "end-of-file",null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,"','",
+null,null,null,null,null,null,null,null,null,null,null,null,null,"':'",null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,"'['",
-null,"']'",null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+"'['",null,"']'",null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,"\"STRING\"","\"LABEL\"","\"NOP\"","\"MOV\"",
-"\"MOVL\"","\"MOVH\"","\"PUSH\"","\"POP\"","\"ADD\"","\"SUB\"","\"OR\"",
-"\"AND\"","\"XOR\"","\"CMP\"","\"NOT\"","\"INC\"","\"DEC\"","\"NEG\"","\"CLI\"",
-"\"STI\"","\"INT\"","\"IRET\"","\"JMP\"","\"CALL\"","\"RET\"","\"BRC\"",
-"\"BRNC\"","\"BRO\"","\"BRNO\"","\"BRZ\"","\"BRNZ\"","\"BRS\"","\"BRNS\"",
-"\"REGISTRO\"","\"NUMERO_ENTERO\"","\"NUMERO_HEXADECIMAL\"",
-"\"NUMERO_BINARIO\"",
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+null,null,null,null,null,null,null,"\"STRING\"","\"NOP\"","\"MOV\"","\"MOVL\"",
+"\"MOVH\"","\"PUSH\"","\"POP\"","\"ADD\"","\"SUB\"","\"OR\"","\"AND\"",
+"\"XOR\"","\"CMP\"","\"NOT\"","\"INC\"","\"DEC\"","\"NEG\"","\"CLI\"","\"STI\"",
+"\"INT\"","\"IRET\"","\"JMP\"","\"CALL\"","\"RET\"","\"BRC\"","\"BRNC\"",
+"\"BRO\"","\"BRNO\"","\"BRZ\"","\"BRNZ\"","\"BRS\"","\"BRNS\"","\"REGISTRO\"",
+"\"NUMERO_ENTERO\"","\"NUMERO_HEXADECIMAL\"","\"NUMERO_BINARIO\"",
 };
 final static String yyrule[] = {
 "$accept : program",
@@ -343,7 +341,7 @@ final static String yyrule[] = {
 "statements : statements statement",
 "statement : instructions",
 "statement : label",
-"label : \"STRING\" \"LABEL\"",
+"label : \"STRING\" ':'",
 "instructions : \"NOP\"",
 "instructions : \"MOV\" registro ',' registro",
 "instructions : \"MOV\" registro ',' '[' registro ']'",
@@ -422,7 +420,7 @@ public Parser(Lexicon lexicon) {
 public ASTNode getAST(){
 	return this.ast;
 }
-//#line 362 "Parser.java"
+//#line 360 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -796,7 +794,7 @@ case 55:
 //#line 82 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
 { yyval = new BinaryLiteral(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
-//#line 731 "Parser.java"
+//#line 729 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

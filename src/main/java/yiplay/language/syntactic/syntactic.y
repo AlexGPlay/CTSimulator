@@ -25,7 +25,7 @@ statement: instructions																					{ $$ = $1; }
 		| label																							{ $$ = $1; } 
 		;
 		
-label: 'STRING' 'LABEL'																					{ $$ = new Label(lexicon.getLine(), lexicon.getColumn(), (String)$1); }
+label: 'STRING' ':'																					{ $$ = new Label(lexicon.getLine(), lexicon.getColumn(), (String)$1); }
 	 ;
 	 
 instructions: 'NOP'																						{ $$ = new Nop(lexicon.getLine(), lexicon.getColumn()); }

@@ -8,7 +8,7 @@
    4  statement : instructions
    5            | label
 
-   6  label : "STRING" "LABEL"
+   6  label : "STRING" ':'
 
    7  instructions : "NOP"
    8               | "MOV" registro ',' registro
@@ -122,9 +122,9 @@ state 2
 
 
 state 3
-	label : "STRING" . "LABEL"  (6)
+	label : "STRING" . ':'  (6)
 
-	"LABEL"  shift 38
+	':'  shift 38
 	.  error
 
 
@@ -462,7 +462,7 @@ state 37
 
 
 state 38
-	label : "STRING" "LABEL" .  (6)
+	label : "STRING" ':' .  (6)
 
 	.  reduce 6
 
