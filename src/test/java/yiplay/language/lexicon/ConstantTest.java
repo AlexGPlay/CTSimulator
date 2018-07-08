@@ -50,8 +50,8 @@ public class ConstantTest {
 		constantAssert("1234h", TokenInfo.NUMERO_HEXADECIMAL);
 		constantAssert("AB1234h", TokenInfo.NUMERO_HEXADECIMAL);
 		constantAssert("01234h", TokenInfo.NUMERO_HEXADECIMAL);
-		constantAssert("0x1234", TokenInfo.NUMERO_HEXADECIMAL);
-		constantAssert("0xAB0", TokenInfo.NUMERO_HEXADECIMAL);
+		constantAssert("0h1234", TokenInfo.NUMERO_HEXADECIMAL);
+		constantAssert("0hAB0", TokenInfo.NUMERO_HEXADECIMAL);
 		constantAssert("0b10110", TokenInfo.NUMERO_BINARIO);
 		constantAssert("R2", TokenInfo.REGISTRO);
 		constantAssert("r2", TokenInfo.REGISTRO);

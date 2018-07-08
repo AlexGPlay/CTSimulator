@@ -110,7 +110,7 @@ public class InstructionTest {
 	@Test
 	public void testBrc() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -154,7 +154,7 @@ public class InstructionTest {
 	@Test
 	public void testBrnc() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -198,7 +198,7 @@ public class InstructionTest {
 	@Test
 	public void testBrno() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -242,7 +242,7 @@ public class InstructionTest {
 	@Test
 	public void testBrns() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -286,7 +286,7 @@ public class InstructionTest {
 	@Test
 	public void testBrnz() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -330,7 +330,7 @@ public class InstructionTest {
 	@Test
 	public void testBro() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -374,7 +374,7 @@ public class InstructionTest {
 	@Test
 	public void testBrs() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -418,7 +418,7 @@ public class InstructionTest {
 	@Test
 	public void testBrz() {
 		String[] labels = {"SALTO", "SALTO22"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -463,7 +463,7 @@ public class InstructionTest {
 	public void testCall() {
 		String[] labels = {"SALTO", "SALTO22"};
 		String[] registers = {"R0", "R1", "R2", "R3"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -565,7 +565,7 @@ public class InstructionTest {
 	
 	@Test
 	public void testInt() {
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -610,7 +610,7 @@ public class InstructionTest {
 	public void testJmp() {
 		String[] labels = {"SALTO", "SALTO22"};
 		String[] registers = {"R0", "R1", "R2", "R3"};
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 
@@ -708,7 +708,7 @@ public class InstructionTest {
 	
 	@Test
 	public void testeMovh() {
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 		Register reg = new Register(0,0,"R0");
@@ -743,7 +743,7 @@ public class InstructionTest {
 	
 	@Test
 	public void testeMovl() {
-		String[] hexadec = {"0X1234", "1234H"};
+		String[] hexadec = {"0H1234", "1234H"};
 		String[] binary = {"0B11011"};
 		Integer[] decimal = {1234, 134};
 		Register reg = new Register(0,0,"R0");
