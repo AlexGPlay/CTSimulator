@@ -33,7 +33,9 @@ public abstract class AbstractVisitor implements Visitor{
 	public Object visit(Register ast, Object param) {
 		return ast.getRegister();
 	}
-
+	
+	// STATEMENTS
+	
 	public Object visit(Add ast, Object param) {
 		ast.getRd().accept(this, param);
 		ast.getRs1().accept(this, param);
@@ -41,9 +43,6 @@ public abstract class AbstractVisitor implements Visitor{
 		
 		return null;
 	}
-	
-	
-	// STATEMENTS
 
 	public Object visit(And ast, Object param) {
 		ast.getRd().accept(this, param);

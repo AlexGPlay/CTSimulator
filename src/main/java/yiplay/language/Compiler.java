@@ -1,7 +1,9 @@
 package yiplay.language;
 
 import java.io.StringReader;
+import java.util.List;
 
+import yiplay.language.codeGeneration.CodeGenerationVisitor;
 import yiplay.language.errorManagement.ErrorManager;
 import yiplay.language.lexicon.Lexicon;
 import yiplay.language.semantic.CheckerVisitor;
@@ -11,7 +13,7 @@ import yiplay.language.visitor.Visitor;
 
 public class Compiler {
 
-	public int compile(String code) {
+	public List<String> compile(String code) {
 		ErrorManager.getManager().reset();
 		
 		code = code.toUpperCase();
@@ -22,15 +24,21 @@ public class Compiler {
 		parser.run();
 		
 		if(ErrorManager.getManager().hasErrors())
-			return -1;
+			return null;
 		
 		Visitor labelVisitor = new SubstitutionVisitor();
 		parser.getAST().accept(labelVisitor, null);
 		
 		Visitor lengthVisitor = new CheckerVisitor();
 		parser.getAST().accept(lengthVisitor, null);
+		
+		if(ErrorManager.getManager().hasErrors())
+			return null;
+		
+		CodeGenerationVisitor codeGenerationVisitor = new CodeGenerationVisitor();
+		parser.getAST().accept(codeGenerationVisitor, null);
 
-		return 0;
+		return codeGenerationVisitor.getInstructions();
 	}
 	
 }

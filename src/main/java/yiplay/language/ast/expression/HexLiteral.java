@@ -9,6 +9,7 @@ public class HexLiteral extends Expression{
 	
 	public HexLiteral(int line, int column, String number) {
 		super(line, column);
+		
 		value = number;
 	}
 
