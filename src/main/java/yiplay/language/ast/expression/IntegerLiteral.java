@@ -2,6 +2,7 @@ package yiplay.language.ast.expression;
 
 import yiplay.language.ast.Expression;
 import yiplay.language.visitor.Visitor;
+import yiplay.util.Translate;
 
 public class IntegerLiteral extends Expression{
 
@@ -37,18 +38,7 @@ public class IntegerLiteral extends Expression{
 
 	@Override
 	public String translate() {
-		String toTranslate;
-		
-		if(value >= 0)
-			toTranslate = Integer.toBinaryString(value);
-		
-		else
-			toTranslate = String.format("%8s", Integer.toBinaryString(value & 0xFF)).replace(' ', '0');
-		
-		while(toTranslate.length() < 8)
-			toTranslate = "0" + toTranslate;
-		
-		return toTranslate;
+		return Translate.toBinaryString((short) value, 8);
 	}
 
 }

@@ -1,21 +1,24 @@
 package yiplay.tc.cpu.register;
 
+import java.util.logging.Logger;
+
 import yiplay.language.ast.ASTNode;
 import yiplay.language.ast.expression.*;
 import yiplay.language.ast.statement.*;
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.ControlUnit;
 import yiplay.tc.cpu.bus.InternalBus;
+import yiplay.util.Translate;
 
 public class InstructionRegister extends AbstractRegister {
-
-	private InternalBus internalBus;
-	private ControlUnit controlUnit;
 	
-	private InstructionRegister() {
-		internalBus = (InternalBus) InternalBus.getInstance();
-		controlUnit = (ControlUnit) ControlUnit.getInstance();
-	}
+	private final static Logger logger = Logger.getLogger( InstructionRegister.class.getName() );
+	
+	private ASTNode actualInstruction;
+	
+	private static AbstractComponent instance;
+	
+	private InstructionRegister() {}
 	
 	public static AbstractComponent getInstance() {
 		if(instance == null)
@@ -23,12 +26,52 @@ public class InstructionRegister extends AbstractRegister {
 		return instance;
 	}
 	
-	public void Irl_Ibl() {
-		
+	public ASTNode getActualInstruction() {
+		return actualInstruction;
 	}
 	
-	public void Irh_Ibh() {
+	@Override
+	public void setData(short data) {
+		this.data = data;
+		String ins = Translate.toBinaryString(data, 16);
+		while(ins.length()<16)
+			ins = "0" + ins;
+		actualInstruction = translateBinaryToInstruction(ins);
 		
+		if(actualInstruction == null)
+			return;
+			
+		actualInstruction.accept((ControlUnit)ControlUnit.getInstance(), null);
+		
+		System.out.println(String.format("Preparing to execute: %s\n", actualInstruction));
+	}
+	
+	public void Irl_Ibl() {
+		short lowByte = (short) (data & 0xFF);
+		short highByte = (short) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF00);
+		short res = 0;
+		res |= lowByte;
+		res |= highByte;
+		
+		logger.info(String.format("Irl_Ibl signal launched === IRl -> %d -> IBl\n",lowByte));
+		((InternalBus)InternalBus.getInstance()).setData(res);
+	}
+	
+	public void Irl_Ibh() {
+		short lowByte = (short) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF);
+		short highByte = (short) (data & 0xFF);
+		short res = 0;
+		res |= lowByte;
+		res |= highByte;
+		
+		logger.info(String.format("Irl_Ibh signal launched === IRl -> %d -> IBh\n",lowByte));
+		((InternalBus)InternalBus.getInstance()).setData(res);
+	}
+	
+	public void ExtIrl_Ib() {
+		short lowByte = (short) (data & 0xFF);
+		logger.info(String.format("ExtIrl_Ibh signal launched === EXTIRl -> %d -> IBh\n", lowByte));
+		((InternalBus)InternalBus.getInstance()).setData(lowByte);
 	}
 
 	public ASTNode translateBinaryToInstruction(String instruccion) {
@@ -194,8 +237,8 @@ public class InstructionRegister extends AbstractRegister {
 		String registro1 = instruction.substring(5, 8);
 		String registro2 = instruction.substring(8,11);
 
-		int r1 = Integer.parseInt(registro1, 2);
-		int r2 = Integer.parseInt(registro2, 2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
 
 		return new Mov(0, 0, new Register(0,0, "R"+r1), new Register(0,0,"R"+r2),0);
 	}
@@ -204,8 +247,8 @@ public class InstructionRegister extends AbstractRegister {
 		String registro1 = instruction.substring(5, 8);
 		String registro2 = instruction.substring(8,11);
 
-		int r1 = Integer.parseInt(registro1, 2);
-		int r2 = Integer.parseInt(registro2, 2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
 
 		return new Mov(0, 0, new Register(0,0, "R"+r1), new Register(0,0,"R"+r2),1);
 	}
@@ -214,8 +257,8 @@ public class InstructionRegister extends AbstractRegister {
 		String registro1 = instruction.substring(5, 8);
 		String registro2 = instruction.substring(8,11);
 
-		int r1 = Integer.parseInt(registro1, 2);
-		int r2 = Integer.parseInt(registro2, 2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
 
 		return new Mov(0, 0, new Register(0,0, "R"+r1), new Register(0,0,"R"+r2),2);
 	}
@@ -224,8 +267,8 @@ public class InstructionRegister extends AbstractRegister {
 		String registro1 = instruction.substring(5, 8);
 		String inm8 = instruction.substring(8,instruction.length());
 
-		int r1 = Integer.parseInt(registro1, 2);
-		int i8 = Integer.parseInt(inm8, 2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int i8 = Translate.toDecimalInteger(inm8);
 
 		return new Movl(0, 0, new Register(0,0, "R"+r1), new IntegerLiteral(0,0,i8));
 	}
@@ -234,22 +277,22 @@ public class InstructionRegister extends AbstractRegister {
 		String registro1 = instruction.substring(5, 8);
 		String inm8 = instruction.substring(8,instruction.length());
 
-		int r1 = Integer.parseInt(registro1, 2);
-		int i8 = Integer.parseInt(inm8, 2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int i8 = Translate.toDecimalInteger(inm8);
 
 		return new Movh(0, 0, new Register(0,0, "R"+r1), new IntegerLiteral(0,0,i8));
 	}
 	
 	private ASTNode generatePush(String instruction) {
 		String registro1 = instruction.substring(5, 8);
-		int r1 = Integer.parseInt(registro1, 2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Push(0,0,new Register(0,0,"R"+r1));
 	}
 	
 	private ASTNode generatePop(String instruction) {
 		String registro1 = instruction.substring(5, 8);
-		int r1 = Integer.parseInt(registro1, 2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Pop(0,0,new Register(0,0,"R"+r1));
 	}
@@ -259,9 +302,9 @@ public class InstructionRegister extends AbstractRegister {
 		String registro2 = instruction.substring(8,11);
 		String registro3 = instruction.substring(11,14);
 
-		int r1 = Integer.parseInt(registro1,2);
-		int r2 = Integer.parseInt(registro2,2);
-		int r3 = Integer.parseInt(registro3,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
+		int r3 = Translate.toDecimalInteger(registro3,true);
 
 		return new Add(0,0,new Register(0,0,"R"+r1),new Register(0,0,"R"+r2), new Register(0,0,"R"+r3));
 	}
@@ -271,9 +314,9 @@ public class InstructionRegister extends AbstractRegister {
 		String registro2 = instruction.substring(8,11);
 		String registro3 = instruction.substring(11,14);
 
-		int r1 = Integer.parseInt(registro1,2);
-		int r2 = Integer.parseInt(registro2,2);
-		int r3 = Integer.parseInt(registro3,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
+		int r3 = Translate.toDecimalInteger(registro3,true);
 
 		return new Sub(0,0,new Register(0,0,"R"+r1),new Register(0,0,"R"+r2), new Register(0,0,"R"+r3));
 	}
@@ -283,9 +326,9 @@ public class InstructionRegister extends AbstractRegister {
 		String registro2 = instruction.substring(8,11);
 		String registro3 = instruction.substring(11,14);
 
-		int r1 = Integer.parseInt(registro1,2);
-		int r2 = Integer.parseInt(registro2,2);
-		int r3 = Integer.parseInt(registro3,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
+		int r3 = Translate.toDecimalInteger(registro3,true);
 
 		return new And(0,0,new Register(0,0,"R"+r1),new Register(0,0,"R"+r2), new Register(0,0,"R"+r3));
 	}
@@ -295,9 +338,9 @@ public class InstructionRegister extends AbstractRegister {
 		String registro2 = instruction.substring(8,11);
 		String registro3 = instruction.substring(11,14);
 
-		int r1 = Integer.parseInt(registro1,2);
-		int r2 = Integer.parseInt(registro2,2);
-		int r3 = Integer.parseInt(registro3,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
+		int r3 = Translate.toDecimalInteger(registro3,true);
 
 		return new Or(0,0,new Register(0,0,"R"+r1),new Register(0,0,"R"+r2), new Register(0,0,"R"+r3));
 	}
@@ -307,9 +350,9 @@ public class InstructionRegister extends AbstractRegister {
 		String registro2 = instruction.substring(8,11);
 		String registro3 = instruction.substring(11,14);
 
-		int r1 = Integer.parseInt(registro1,2);
-		int r2 = Integer.parseInt(registro2,2);
-		int r3 = Integer.parseInt(registro3,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
+		int r3 = Translate.toDecimalInteger(registro3,true);
 
 		return new Xor(0,0,new Register(0,0,"R"+r1),new Register(0,0,"R"+r2), new Register(0,0,"R"+r3));
 	}
@@ -318,36 +361,36 @@ public class InstructionRegister extends AbstractRegister {
 		String registro1 = instruction.substring(5,8);
 		String registro2 = instruction.substring(8,11);
 
-		int r1 = Integer.parseInt(registro1,2);
-		int r2 = Integer.parseInt(registro2,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
+		int r2 = Translate.toDecimalInteger(registro2,true);
 
 		return new Cmp(0,0,new Register(0,0,"R"+r1),new Register(0,0,"R"+r2));
 	}
 	
 	private ASTNode generateNot(String instruction) {
 		String registro1 = instruction.substring(5,8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Not(0,0,new Register(0,0,"R"+r1));
 	}
 	
 	private ASTNode generateInc(String instruction) {
 		String registro1 = instruction.substring(5,8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Inc(0,0,new Register(0,0,"R"+r1));
 	}
 	
 	private ASTNode generateDec(String instruction) {
 		String registro1 = instruction.substring(5,8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Dec(0,0,new Register(0,0,"R"+r1));
 	}
 	
 	private ASTNode generateNeg(String instruction) {
 		String registro1 = instruction.substring(5,8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Neg(0,0,new Register(0,0,"R"+r1));
 	}
@@ -361,8 +404,8 @@ public class InstructionRegister extends AbstractRegister {
 	}
 	
 	private ASTNode generateInt(String instruction) {
-		String i8 = instruction.substring(5,13);
-		int inm8 = Integer.parseInt(i8,2);
+		String i8 = instruction.substring(8);
+		int inm8 = Translate.toDecimalInteger(i8);
 
 		return new Int(0,0,new IntegerLiteral(0,0,inm8));
 	}
@@ -373,28 +416,28 @@ public class InstructionRegister extends AbstractRegister {
 	
 	private ASTNode generateJmpI8(String instruction) {
 		String inm8 = instruction.substring(8);
-		int i8 = Integer.parseInt(inm8,2);
+		int i8 = Translate.toDecimalInteger(inm8);
 
 		return new Jmp(0,0,new IntegerLiteral(0,0,i8),0);
 	}
 	
 	private ASTNode generateJmpR(String instruction) {
-		String registro1 = instruction.substring(8, 11);
-		int r1 = Integer.parseInt(registro1,2);
+		String registro1 = instruction.substring(5, 8);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Jmp(0,0,new Register(0,0,"R"+r1),1);
 	}
 	
 	private ASTNode generateCallI8(String instruction) {
 		String inm8 = instruction.substring(8);
-		int i8 = Integer.parseInt(inm8,2);
+		int i8 = Translate.toDecimalInteger(inm8);
 
 		return new Call(0,0,new IntegerLiteral(0,0,i8),0);
 	}
 	
 	private ASTNode generateCallR(String instruction) {
-		String registro1 = instruction.substring(8, 11);
-		int r1 = Integer.parseInt(registro1,2);
+		String registro1 = instruction.substring(5, 8);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 
 		return new Call(0,0,new Register(0,0,"R"+r1),1);
 	}
@@ -405,58 +448,58 @@ public class InstructionRegister extends AbstractRegister {
 	
 	private ASTNode generateBrc(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Brc(0,0,new Register(0,0,"R"+r1));
+		return new Brc(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 	private ASTNode generateBrnc(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Brnc(0,0,new Register(0,0,"R"+r1));
+		return new Brnc(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 	private ASTNode generateBro(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Bro(0,0,new Register(0,0,"R"+r1));
+		return new Bro(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 	private ASTNode generateBrno(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Brno(0,0,new Register(0,0,"R"+r1));
+		return new Brno(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 	private ASTNode generateBrz(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Brz(0,0,new Register(0,0,"R"+r1));
+		return new Brz(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 	private ASTNode generateBrnz(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Brnz(0,0,new Register(0,0,"R"+r1));
+		return new Brnz(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 	private ASTNode generateBrs(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Brs(0,0,new Register(0,0,"R"+r1));
+		return new Brs(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 	private ASTNode generateBrns(String instruction) {
 		String registro1 = instruction.substring(8);
-		int r1 = Integer.parseInt(registro1,2);
+		int r1 = Translate.toDecimalInteger(registro1,true);
 		
-		return new Brns(0,0,new Register(0,0,"R"+r1));
+		return new Brns(0,0,new IntegerLiteral(0,0,r1));
 	}
 	
 }

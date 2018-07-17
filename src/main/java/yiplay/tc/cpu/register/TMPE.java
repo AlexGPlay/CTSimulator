@@ -1,14 +1,23 @@
 package yiplay.tc.cpu.register;
 
+import java.util.logging.Logger;
+
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.ArithmeticLogicUnit;
 
 public class TMPE extends AbstractRegister{
+
+	private final static Logger logger = Logger.getLogger( TMPE.class.getName() );
 	
-	private ArithmeticLogicUnit alu;
+	private static AbstractComponent instance;
 	
 	private TMPE() {
-		alu = (ArithmeticLogicUnit) ArithmeticLogicUnit.getInstance();
+	}
+	
+	@Override
+	public void setData(short data) {
+		this.data = data;
+		((ArithmeticLogicUnit) ArithmeticLogicUnit.getInstance()).setOperand1(data);
 	}
 
 	public static AbstractComponent getInstance() {
@@ -16,18 +25,20 @@ public class TMPE extends AbstractRegister{
 			instance = new TMPE();
 		return instance;
 	}
-	
+
 	public void Tmpe_Clr() {
+		logger.info(String.format("Tmpe_Clr signal launched === 0 -> TMPE\n"));
 		setData((short) 0);
-		alu.setOperand1((short) 0);
+		((ArithmeticLogicUnit) ArithmeticLogicUnit.getInstance()).setOperand1((short) 0);
 	}
-	
+
 	public void Tmpe_Set() {
 		String data = "FFFF";
-		short nData = Short.valueOf(data,16);
-		
-		setData(nData);
-		alu.setOperand1(nData);
+		int nData = Integer.valueOf(data,16);
+
+		logger.info(String.format("Tmpe_Set signal launched === FFFF -> TMPE\n"));
+		setData((short) nData);
+		((ArithmeticLogicUnit) ArithmeticLogicUnit.getInstance()).setOperand1(this.data);
 	}
 
 }

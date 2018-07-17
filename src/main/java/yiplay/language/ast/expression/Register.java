@@ -2,6 +2,7 @@ package yiplay.language.ast.expression;
 
 import yiplay.language.ast.Expression;
 import yiplay.language.visitor.Visitor;
+import yiplay.util.Translate;
 
 public class Register extends Expression{
 
@@ -41,10 +42,7 @@ public class Register extends Expression{
 
 	@Override
 	public String translate() {
-		String toTranslate = Integer.toBinaryString(register);
-		
-		while(toTranslate.length() < 3)
-			toTranslate = "0" + toTranslate;
+		String toTranslate = Translate.toBinaryString((short) register,3);
 		
 		return toTranslate;
 	}

@@ -1,14 +1,17 @@
 package yiplay.tc.cpu.register;
 
+import java.util.logging.Logger;
+
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.bus.InternalBus;
 
 public class TMPS extends AbstractRegister{
 	
-	private InternalBus internalBus;
+	private final static Logger logger = Logger.getLogger( TMPS.class.getName() );
+	
+	private static AbstractComponent instance;
 	
 	private TMPS() {
-		internalBus = (InternalBus) InternalBus.getInstance();
 	}
 
 	public static AbstractComponent getInstance() {
@@ -18,7 +21,8 @@ public class TMPS extends AbstractRegister{
 	}
 	
 	public void Tmps_Ib() {
-		internalBus.setData(data);
+		logger.info(String.format("Tmps_Ib signal launched === TMPS -> %d -> IB\n",data));
+		((InternalBus) InternalBus.getInstance()).setData(data);
 	}
 
 }

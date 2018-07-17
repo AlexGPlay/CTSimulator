@@ -1,24 +1,28 @@
 package yiplay.tc.cpu.register;
 
+import java.util.logging.Logger;
+
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.bus.InternalBus;
 
 public class ProgramCounter extends AbstractRegister{
 
-	private InternalBus internalBus;
+	private final static Logger logger = Logger.getLogger( ProgramCounter.class.getName() );
+	
+	private static AbstractComponent instance;
 	
 	private ProgramCounter() {
-		internalBus = (InternalBus) InternalBus.getInstance();
 	}
-	
+
 	public static AbstractComponent getInstance() {
 		if(instance == null)
 			instance = new ProgramCounter();
 		return instance;
 	}
-	
+
 	public void Pc_Ib() {
-		internalBus.setData(data);
+		logger.info(String.format("Pc_Ib signal launched === PC -> %d -> IB\n",data));
+		((InternalBus) InternalBus.getInstance()).setData(data);
 	}
 
 }

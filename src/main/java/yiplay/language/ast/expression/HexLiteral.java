@@ -2,6 +2,7 @@ package yiplay.language.ast.expression;
 
 import yiplay.language.ast.Expression;
 import yiplay.language.visitor.Visitor;
+import yiplay.util.Translate;
 
 public class HexLiteral extends Expression{
 
@@ -48,13 +49,7 @@ public class HexLiteral extends Expression{
 		else
 			toTranslate = value;
 		
-		int decimal = Integer.parseInt(toTranslate, 16);
-		toTranslate = Integer.toBinaryString(decimal);
-		
-		while(toTranslate.length()<8)
-			toTranslate = "0" + toTranslate;
-		
-		return toTranslate;
+		return Translate.toBinaryString(toTranslate, 16, 8);
 	}
 	
 }

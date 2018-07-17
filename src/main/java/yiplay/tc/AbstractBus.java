@@ -1,6 +1,4 @@
-package yiplay;
-
-import yiplay.tc.AbstractComponent;
+package yiplay.tc;
 
 public abstract class AbstractBus extends AbstractComponent{
 

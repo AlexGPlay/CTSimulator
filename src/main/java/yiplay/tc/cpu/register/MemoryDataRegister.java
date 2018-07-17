@@ -1,17 +1,18 @@
 package yiplay.tc.cpu.register;
 
+import java.util.logging.Logger;
+
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.bus.InternalBus;
 import yiplay.tc.memory.bus.DataBus;
 
 public class MemoryDataRegister extends AbstractRegister{
-
-	private InternalBus internalBus;
-	private DataBus dataBus;
+	
+	private final static Logger logger = Logger.getLogger( MemoryDataRegister.class.getName() );
+	
+	private static AbstractComponent instance;
 	
 	private MemoryDataRegister() {
-		internalBus = (InternalBus) InternalBus.getInstance();
-		dataBus = (DataBus) DataBus.getInstance();
 	}
 	
 	public static AbstractComponent getInstance() {
@@ -20,12 +21,19 @@ public class MemoryDataRegister extends AbstractRegister{
 		return instance;
 	}
 	
-	public void Mdr_Ib() {
-		internalBus.setData(data);
+	@Override
+	public void setData(short data) {
+		this.data = data;
+		((DataBus) DataBus.getInstance()).setData(data,true);
 	}
 	
-	public void Mdr_Sdb() {
-		dataBus.setData(data);
+	public void setData(short data, boolean db) {
+		this.data = data;
+	}
+	
+	public void Mdr_Ib() {
+		logger.info(String.format("Mdr_Ib signal launched === MAR -> %d -> IB\n",data));
+		((InternalBus) InternalBus.getInstance()).setData(data);
 	}
 
 }

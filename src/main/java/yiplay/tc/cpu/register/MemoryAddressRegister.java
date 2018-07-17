@@ -4,12 +4,10 @@ import yiplay.tc.AbstractComponent;
 import yiplay.tc.memory.bus.AddressBus;
 
 public class MemoryAddressRegister extends AbstractRegister{
-
-	private AddressBus addressBus;
 	
-	private MemoryAddressRegister() {
-		addressBus = (AddressBus) AddressBus.getInstance();
-	}
+	private static AbstractComponent instance;
+	
+	private MemoryAddressRegister() {}
 	
 	public static AbstractComponent getInstance() {
 		if(instance == null)
@@ -17,8 +15,10 @@ public class MemoryAddressRegister extends AbstractRegister{
 		return instance;
 	}
 	
-	public void Mar_Sab() {
-		addressBus.setData(data);
+	@Override
+	public void setData(short data) {
+		this.data = data;
+		((AddressBus)AddressBus.getInstance()).setData(data);
 	}
 
 }

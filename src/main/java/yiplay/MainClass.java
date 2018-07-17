@@ -6,8 +6,7 @@ import yiplay.language.errorManagement.ErrorManager;
 public class MainClass {
 
 	public static void main(String args[]) {
-		Compiler compiler = new Compiler();
-		compiler.compile("movl r3, 4 ;  Pasar el primer parámetro en r1 \r\n" + 
+		LogicFacade.getInstance().compileAndSave("movl r3, 4 ;  Pasar el primer parámetro en r1 \r\n" + 
 				"movh r3, 00\r\n" + 
 				"movl r7, 7 ;  Pasar el segundo parámetro en r2\r\n" + 
 				"movh r4, 0\r\n" + 
@@ -43,6 +42,8 @@ public class MainClass {
 		
 		if(ErrorManager.getManager().hasErrors())
 			ErrorManager.getManager().printErrors();
+		else
+			LogicFacade.getInstance().runProgram();
 		
 	}
 }
