@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.ArithmeticLogicUnit;
+import yiplay.util.Translate;
 
 public class TMPE extends AbstractRegister{
 
@@ -33,8 +34,8 @@ public class TMPE extends AbstractRegister{
 	}
 
 	public void Tmpe_Set() {
-		String data = "FFFF";
-		int nData = Integer.valueOf(data,16);
+		String data = "1111111111111111";
+		short nData = Translate.toDecimalInteger(data);
 
 		logger.info(String.format("Tmpe_Set signal launched === FFFF -> TMPE\n"));
 		setData((short) nData);

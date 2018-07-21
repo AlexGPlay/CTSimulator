@@ -2,6 +2,7 @@ package yiplay.tc;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Test;
 
 import yiplay.tc.cpu.ArithmeticLogicUnit;
@@ -11,6 +12,12 @@ import yiplay.tc.cpu.register.TMPS;
 public class ArithmeticLogicUnitTest {
 
 	private ArithmeticLogicUnit alu = (ArithmeticLogicUnit) ArithmeticLogicUnit.getInstance();
+	
+	@After
+	public void reset() {
+		alu.reset();
+		((StatusRegister)StatusRegister.getInstance()).reset();
+	}
 	
 	@Test
 	public void addTest() {
@@ -30,6 +37,46 @@ public class ArithmeticLogicUnitTest {
 		short operand1 = 10;
 		short operand2 = 20;
 		short res = -10;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Sub();
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = 20;
+		operand2 = 10;
+		res = 10;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Sub();
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = 20;
+		operand2 = -10;
+		res = 30;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Sub();
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = -20;
+		operand2 = -10;
+		res = -10;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Sub();
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = -20;
+		operand2 = 10;
+		res = -30;
 		
 		alu.setOperand1(operand1);
 		alu.setOperand2(operand2);
@@ -134,7 +181,7 @@ public class ArithmeticLogicUnitTest {
 		alu.Sub();
 		alu.Alu_Sr();
 		assertEquals(0,((StatusRegister)StatusRegister.getInstance()).getOf());
-		alu.setOperand1((short) 32768);
+		alu.setOperand1((short) 32767);
 		alu.setOperand2((short) 1);
 		alu.Add();
 		alu.Alu_Sr();

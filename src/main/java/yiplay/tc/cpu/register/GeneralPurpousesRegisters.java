@@ -17,13 +17,22 @@ public class GeneralPurpousesRegisters extends AbstractRegister{
 	
 	private GeneralPurpousesRegisters() {
 		registers = new short[NUM_REGISTERS];
-		registers[7] = -1;
+		registers[7] = -2;
 	}
 
 	public static AbstractComponent getInstance() {
 		if(instance == null)
 			instance = new GeneralPurpousesRegisters();
 		return instance;
+	}
+	
+	public void resetRegisters() {
+		registers = new short[NUM_REGISTERS];
+		registers[7] = -2;
+	}
+	
+	public short[] getRegisters() {
+		return registers;
 	}
 	
 	public void setData(int register, short data) {

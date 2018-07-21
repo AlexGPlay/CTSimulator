@@ -28,6 +28,10 @@ public class Memory extends AbstractComponent{
 		return instance;
 	}
 	
+	public void resetMemory() {
+		instance = new Memory();
+	}
+	
 	public short[] getMemory() {
 		return memory;
 	}

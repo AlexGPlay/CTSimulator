@@ -62,10 +62,10 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	public void Sub() {
 		operation = SUB;
 		
-		short t2 = (short) (-1*operand2);
-		String temp = add(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(t2, 16),16);
+		String temp = sub(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
+		
 		logger.info(String.format("Sub signal launched === %d - %d = %d\n", operand1, operand2, res));
 	}
 	
@@ -188,13 +188,72 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 
 		}
 		
-		int oCheck = operand1 + operand2;
-		if(Integer.toBinaryString(oCheck).length()>bits)
+		int oCheck = (int)((int)operand1 + (int)operand2);
+		if(oCheck > Short.MAX_VALUE || oCheck < Short.MIN_VALUE)
 			overflowFlag = true;
 		else 
 			overflowFlag = false;
 		
 		return res;
+	}
+	
+	private String sub(String op1, String op2, int bits) {
+		String res = "";
+
+		op1 = normalizeToNBits(op1,bits);
+		op2 = normalizeToNBits(op2,bits);
+		
+		carryIn = false;
+		
+		char[] nOp1 = op1.toCharArray();
+		
+		for(int i=bits-1;i>=0;i--) {
+			char n1 = nOp1[i];
+			char n2 = op2.charAt(i);
+
+			if(n1 == '0' && n2 == '0') {
+				res = '0' + res;
+			}
+			
+			else if(n1 == '0' && n2 == '1') {
+				res = '1' + res;
+				nOp1 = lookForOne(nOp1, i-1);
+			}
+			
+			else if(n1 == '1' && n2 == '0') {
+				res = '1' + res;
+			}
+			
+			else if(n1 == '1' && n2 == '1') {
+				res = '0' + res;
+			}
+
+		}
+		
+		int oCheck = operand1 - operand2;
+		if(oCheck > Short.MAX_VALUE || oCheck < Short.MIN_VALUE)
+			overflowFlag = true;
+		else 
+			overflowFlag = false;
+		
+		return res;
+	}
+	
+	private char[] lookForOne(char[] array, int startingPos) {
+		for(int i=startingPos;i>=0;i--) {
+			if(array[i] == '1') {
+				array[i] = '0';
+				carryIn = false;
+				return array;
+			}
+			else {
+				array[i] = '1';
+				continue;
+			}
+		}
+		
+		carryIn = true;
+		return array;
 	}
 	
 	private String or(String op1, String op2 ,int bits) {
@@ -274,6 +333,17 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		else
 			signFlag = true;
 		
+	}
+
+	public void reset() {
+		operand1 = 0;
+		operand2 = 0;
+		res = 0;
+		operation = 0;
+		carryIn = false;
+		zeroFlag = false;
+		signFlag = false;
+		overflowFlag = false;
 	}
 
 }

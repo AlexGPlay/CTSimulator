@@ -80,4 +80,12 @@ public class StatusRegister extends AbstractRegister{
 		intf = 0;
 	}
 
+	public void reset() {
+		zf = 0;
+		cf = 0;
+		of = 0;
+		sf = 0;
+		intf = 0;
+	}
+
 }

@@ -45,14 +45,14 @@ public class InstructionRegisterTest {
 	}
 	
 	@Test
-	public void Irh_Ibh() {
+	public void Irl_Ibh() {
 		
 		short data = -1;
 		ir.setData(data);
 		ir.Irl_Ibh();
 		
 		short lowByte = (short) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF);
-		short highByte = (short) (data & 0xFF);
+		short highByte = (short) ((data & 0xFF) << 8);
 		short res = 0;
 		res |= lowByte;
 		res |= highByte;

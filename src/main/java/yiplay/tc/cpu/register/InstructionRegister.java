@@ -47,22 +47,18 @@ public class InstructionRegister extends AbstractRegister {
 	}
 	
 	public void Irl_Ibl() {
-		short lowByte = (short) (data & 0xFF);
-		short highByte = (short) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF00);
-		short res = 0;
-		res |= lowByte;
-		res |= highByte;
+		byte lowByte =(byte) (data & 0xFF);
+		byte highByte = (byte) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF00 >> 8);
+		short res = (short) ((highByte << 8) | (lowByte & 0xFF));
 		
 		logger.info(String.format("Irl_Ibl signal launched === IRl -> %d -> IBl\n",lowByte));
 		((InternalBus)InternalBus.getInstance()).setData(res);
 	}
 	
 	public void Irl_Ibh() {
-		short lowByte = (short) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF);
-		short highByte = (short) (data & 0xFF);
-		short res = 0;
-		res |= lowByte;
-		res |= highByte;
+		byte lowByte =(byte) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF);
+		byte highByte = (byte) (data & 0xFF00 >> 8);
+		short res = (short) ((highByte << 8) | (lowByte & 0xFF));
 		
 		logger.info(String.format("Irl_Ibh signal launched === IRl -> %d -> IBh\n",lowByte));
 		((InternalBus)InternalBus.getInstance()).setData(res);
