@@ -108,6 +108,10 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 		return instance;
 	}
 	
+	public void setActualCycle(int cycle) {
+		this.actualCycle = cycle;
+	}
+	
 	public List<Consumer<Void>>[] getCycles(){
 		return cycles;
 	}
@@ -140,7 +144,7 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 			cS.accept(null);
 		
 		if(!finishedInstruction)
-		actualCycle++;
+			actualCycle++;
 		totalCycles++;
 	}
 	
@@ -596,6 +600,7 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 		cycles[0].add( (Void) -> ((GeneralPurpousesRegisters)GeneralPurpousesRegisters.getInstance()).Rx_Ib( ((Register)ast.getRsd()).getRegister() ));
 		cycles[0].add( (Void) -> ((TMPE)TMPE.getInstance()).Tmpe_Clr() );
 		cycles[0].add( (Void) -> ((ArithmeticLogicUnit)ArithmeticLogicUnit.getInstance()).Carry_In() );
+		cycles[0].add( (Void) -> ((ArithmeticLogicUnit)ArithmeticLogicUnit.getInstance()).Add() );
 		cycles[0].add( (Void) -> ((ArithmeticLogicUnit)ArithmeticLogicUnit.getInstance()).Alu_Sr() );
 		cycles[0].add( (Void) -> ((ArithmeticLogicUnit)ArithmeticLogicUnit.getInstance()).Alu_Tmps() );
 		
@@ -709,7 +714,7 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 		else if(ast.getMode() == 1) {
 			cycles = (List<Consumer<Void>>[])new List[JMP_RX_CYCLES];
 			initializeArray();
-			cycles[0].add( (Void) -> ((GeneralPurpousesRegisters)GeneralPurpousesRegisters.getInstance()).Rx_Ib(7));
+			cycles[0].add( (Void) -> ((GeneralPurpousesRegisters)GeneralPurpousesRegisters.getInstance()).Rx_Ib( ((Register)ast.getLines()).getRegister() ));
 			cycles[0].add( (Void) -> ((InternalBus)InternalBus.getInstance()).Ib_Pc() );
 			cycles[0].add( (Void) -> Fin() );
 		}

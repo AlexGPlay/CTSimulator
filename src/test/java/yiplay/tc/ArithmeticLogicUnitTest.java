@@ -28,7 +28,47 @@ public class ArithmeticLogicUnitTest {
 		alu.setOperand1(operand1);
 		alu.setOperand2(operand2);
 		alu.Add();
-
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = 20;
+		operand2 = 10;
+		res = 30;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Add();
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = 20;
+		operand2 = -10;
+		res = 10;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Add();
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = -20;
+		operand2 = -10;
+		res = -30;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Add();
+		
+		assertEquals(res,alu.getRes());
+		
+		operand1 = -20;
+		operand2 = 10;
+		res = -10;
+		
+		alu.setOperand1(operand1);
+		alu.setOperand2(operand2);
+		alu.Add();
+		
 		assertEquals(res,alu.getRes());
 	}
 	
@@ -141,11 +181,6 @@ public class ArithmeticLogicUnitTest {
 	
 	@Test
 	public void Alu_SrTest() {
-		assertEquals(0,((StatusRegister)StatusRegister.getInstance()).getCf());
-		alu.Carry_In();
-		alu.Alu_Sr();
-		assertEquals(1,((StatusRegister)StatusRegister.getInstance()).getCf());
-		
 		assertEquals(0,((StatusRegister)StatusRegister.getInstance()).getSf());
 		alu.setOperand1((short) 10);
 		alu.setOperand2((short) 20);

@@ -60,10 +60,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -80,10 +77,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -100,10 +94,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -120,10 +111,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -140,10 +128,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -160,10 +145,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -180,10 +162,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -200,10 +179,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -220,10 +196,7 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
@@ -240,15 +213,21 @@ public class SubstitutionVisitor extends AbstractVisitor{
 						String.format("Label %s doesn't exist", ast.getLabel()));
 			}
 			else {
-				int line = labels.get(position).getLine();
-				int positionDifference = line-position-1-ast.getLine();
-				
-				IntegerLiteral literal = new IntegerLiteral(ast.getLine(),ast.getColumn(),positionDifference);
+				IntegerLiteral literal = calculatePositions(ast.getLine(), position, ast.getLine(), ast.getColumn());
 				ast.setLines(literal);
 			}
 		}
 		
 		return null;
+	}
+	
+	private IntegerLiteral calculatePositions(int astLine, int position, int iLine, int iColumn) {
+		int labelPosition = labels.get(position).getLine() - position;
+		int astPosition = astLine + 1;
+		
+		int positionDifference = labelPosition - astPosition;
+		
+		return new IntegerLiteral(iLine,iColumn,positionDifference);
 	}
 	
 }

@@ -15,13 +15,13 @@ public class StatusRegisterTest {
 	@Test
 	public void cliTest() {
 		sr.Cli();
-		assertEquals(1,sr.getIntf());
+		assertEquals(0,sr.getIntf());
 	}
 	
 	@Test
 	public void stiTest() {
 		sr.Sti();
-		assertEquals(0,sr.getIntf());
+		assertEquals(1,sr.getIntf());
 	}
 	
 	@Test

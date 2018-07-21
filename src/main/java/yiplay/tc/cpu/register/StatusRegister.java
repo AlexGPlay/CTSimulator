@@ -73,11 +73,11 @@ public class StatusRegister extends AbstractRegister{
 	}
 	
 	public void Cli() {
-		intf = 1;
+		intf = 0;
 	}
 	
 	public void Sti() {
-		intf = 0;
+		intf = 1;
 	}
 
 	public void reset() {

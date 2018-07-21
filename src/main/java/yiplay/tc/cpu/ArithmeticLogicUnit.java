@@ -16,7 +16,9 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	private short res;
 	
 	private boolean carryIn;
+	
 	private boolean zeroFlag;
+	private boolean carryFlag;
 	private boolean signFlag;
 	private boolean overflowFlag;
 	
@@ -52,7 +54,8 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	
 	public void Add() {
 		operation = ADD;
-		
+		resetFlags();
+		carryFlag = carryIn;
 		String temp = add(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
@@ -61,17 +64,16 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	
 	public void Sub() {
 		operation = SUB;
-		
+		resetFlags();
 		String temp = sub(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
-		
 		logger.info(String.format("Sub signal launched === %d - %d = %d\n", operand1, operand2, res));
 	}
 	
 	public void Or() {
 		operation = OR;
-		
+		resetFlags();
 		String temp = or(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
@@ -80,7 +82,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	
 	public void And() {
 		operation = AND;
-		
+		resetFlags();
 		String temp = and(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
@@ -89,7 +91,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	
 	public void Xor() {
 		operation = XOR;
-		
+		resetFlags();
 		String temp = xor(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
@@ -108,7 +110,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	
 	public void Alu_Sr() {
 		int zf = zeroFlag ? 1 : 0;
-		int cf = carryIn ? 1 : 0;
+		int cf = carryFlag ? 1 : 0;
 		int of = overflowFlag ? 1 : 0;
 		int sf = signFlag ? 1 : 0;
 		
@@ -149,7 +151,6 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 	
 	private String add(String op1, String op2, int bits) {
 		String res = "";
-
 		op1 = normalizeToNBits(op1,bits);
 		op2 = normalizeToNBits(op2,bits);
 		
@@ -158,32 +159,32 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 			char n2 = op2.charAt(i);
 
 			if(n1 == '0' && n2 == '0') {
-				if(carryIn)
+				if(carryFlag)
 					res = '1' + res;
 				else
 					res = '0' + res;
-				carryIn = false;
+				carryFlag = false;
 			}
 
 			else if(n1 == '0' && n2 == '1' || n1 == '1' && n2 == '0') {
-				if(carryIn) {
+				if(carryFlag) {
 					res = '0' + res;
-					carryIn = true;
+					carryFlag = true;
 				}
 				else {
 					res = '1' + res;
-					carryIn = false;
+					carryFlag = false;
 				}
 			}
 
 
 			else {
-				if(carryIn) 
+				if(carryFlag) 
 					res = '1' + res;
 				else 
 					res = '0' + res;
 				
-				carryIn = true;
+				carryFlag = true;
 			}
 
 		}
@@ -202,8 +203,6 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 
 		op1 = normalizeToNBits(op1,bits);
 		op2 = normalizeToNBits(op2,bits);
-		
-		carryIn = false;
 		
 		char[] nOp1 = op1.toCharArray();
 		
@@ -243,7 +242,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		for(int i=startingPos;i>=0;i--) {
 			if(array[i] == '1') {
 				array[i] = '0';
-				carryIn = false;
+				carryFlag = false;
 				return array;
 			}
 			else {
@@ -252,7 +251,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 			}
 		}
 		
-		carryIn = true;
+		carryFlag = true;
 		return array;
 	}
 	
@@ -333,17 +332,23 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		else
 			signFlag = true;
 		
+		carryIn = false;
+	}
+	
+	private void resetFlags() {
+		zeroFlag = false;
+		signFlag = false;
+		overflowFlag = false;
+		carryFlag = false;
 	}
 
 	public void reset() {
+		resetFlags();
+		carryIn = false;
 		operand1 = 0;
 		operand2 = 0;
 		res = 0;
 		operation = 0;
-		carryIn = false;
-		zeroFlag = false;
-		signFlag = false;
-		overflowFlag = false;
 	}
 
 }
