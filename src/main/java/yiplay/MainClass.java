@@ -1,49 +1,23 @@
 package yiplay;
 
-import yiplay.language.Compiler;
-import yiplay.language.errorManagement.ErrorManager;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class MainClass {
+public class MainClass extends Application{
 
 	public static void main(String args[]) {
-		LogicFacade.getInstance().compileAndSave("movl r3, 4 ;  Pasar el primer parámetro en r1 \r\n" + 
-				"movh r3, 00\r\n" + 
-				"movl r7, 7 ;  Pasar el segundo parámetro en r2\r\n" + 
-				"movh r4, 0\r\n" + 
-				"push r4 \r\n" + 
-				"push r3 \r\n" + 
-				"call suma\r\n" + 
-				"inc r7\r\n" + 
-				"inc r7\r\n" + 
-				"movl r3, 0\r\n" + 
-				"movh r3, 10h\r\n" + 
-				"mov [r3], r0\r\n" + 
-				"\r\n" + 
-				"suma: \r\n" + 
-				"    push r6 ; Prólogo\r\n" + 
-				"    mov r6, r7\r\n" + 
-				"\r\n" + 
-				"    push r1 ; Salvaguarda de registros\r\n" + 
-				"    push r2 \r\n" + 
-				"\r\n" + 
-				"    inc r6\r\n" + 
-				"    inc r6\r\n" + 
-				"    mov r1, [r6] ; Acceso al primer parámetro\r\n" + 
-				"    inc r6\r\n" + 
-				"    mov r2, [r6] ; Acceso al segundo parámetro\r\n" + 
-				"\r\n" + 
-				"    add r0, r1, r2 ; Cuerpo del procedimiento\r\n" + 
-				"\r\n" + 
-				"    pop r2 ; Restauración de registros\r\n" + 
-				"    pop r1\r\n" + 
-				"\r\n" + 
-				"    pop r6 ; Epílogo\r\n" + 
-				"    ret ");
-		
-		if(ErrorManager.getManager().hasErrors())
-			ErrorManager.getManager().printErrors();
-		else
-			LogicFacade.getInstance().runProgram();
-		
+		launch(args);
 	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("/yiplay/gui/MainWindow.fxml"));
+		primaryStage.setScene(new Scene(root));
+		primaryStage.setTitle("CTSimulator");
+		primaryStage.show();
+	}
+	
 }

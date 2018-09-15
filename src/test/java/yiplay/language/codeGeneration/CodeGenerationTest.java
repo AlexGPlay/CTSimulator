@@ -3,10 +3,12 @@ package yiplay.language.codeGeneration;
 import static org.junit.Assert.*;
 
 import java.util.List;
-import yiplay.language.Compiler;
-import yiplay.language.ast.expression.*;
 
 import org.junit.Test;
+
+import yiplay.language.Compiler;
+import yiplay.language.ast.expression.IntegerLiteral;
+import yiplay.language.ast.expression.Register;
 
 public class CodeGenerationTest {
 
