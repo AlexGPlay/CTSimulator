@@ -41,5 +41,6 @@ public abstract class TokenInfo {
 	public static final short BRNZ = Parser.BRNZ;
 	public static final short BRS = Parser.BRS;
 	public static final short BRNS = Parser.BRNS;
+	public static final short HALT = Parser.HALT;
 	
 }

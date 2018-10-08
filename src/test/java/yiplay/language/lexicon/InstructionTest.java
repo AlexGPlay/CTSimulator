@@ -75,6 +75,7 @@ public class InstructionTest {
 		instructionAssert("brnz", TokenInfo.BRNZ);
 		instructionAssert("brs", TokenInfo.BRS);
 		instructionAssert("brns", TokenInfo.BRNS);
+		instructionAssert("halt", TokenInfo.HALT);
 	}
 	
 }

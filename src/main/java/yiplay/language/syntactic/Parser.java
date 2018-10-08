@@ -156,6 +156,7 @@ final Object dup_yyval(Object val)
 //#### end semantic value section ####
 public final static short STRING=257;
 public final static short NOP=258;
+public final static short HALT = 500;
 public final static short MOV=259;
 public final static short MOVL=260;
 public final static short MOVH=261;

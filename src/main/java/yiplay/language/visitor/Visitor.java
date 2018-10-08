@@ -27,6 +27,7 @@ public interface Visitor {
 	Object visit(Cli ast, Object param);
 	Object visit(Cmp ast, Object param);
 	Object visit(Dec ast, Object param);
+	Object visit(Halt halt, Object param);
 	Object visit(Inc ast, Object param);
 	Object visit(Int ast, Object param);
 	Object visit(Iret ast, Object param);

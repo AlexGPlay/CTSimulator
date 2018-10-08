@@ -1,7 +1,5 @@
 package yiplay.tc.cpu.register;
 
-import java.util.logging.Logger;
-
 import yiplay.language.ast.ASTNode;
 import yiplay.language.ast.expression.*;
 import yiplay.language.ast.statement.*;
@@ -11,9 +9,7 @@ import yiplay.tc.cpu.bus.InternalBus;
 import yiplay.util.Translate;
 
 public class InstructionRegister extends AbstractRegister {
-	
-	private final static Logger logger = Logger.getLogger( InstructionRegister.class.getName() );
-	
+		
 	private ASTNode actualInstruction;
 	
 	private static AbstractComponent instance;
@@ -41,9 +37,8 @@ public class InstructionRegister extends AbstractRegister {
 		if(actualInstruction == null)
 			return;
 			
+		System.out.println(String.format("Preparing to execute: %s", actualInstruction));
 		actualInstruction.accept((ControlUnit)ControlUnit.getInstance(), null);
-		
-		System.out.println(String.format("Preparing to execute: %s\n", actualInstruction));
 	}
 	
 	public void Irl_Ibl() {
@@ -51,7 +46,7 @@ public class InstructionRegister extends AbstractRegister {
 		byte highByte = (byte) ((((InternalBus)InternalBus.getInstance()).getData()) & 0xFF00 >> 8);
 		short res = (short) ((highByte << 8) | (lowByte & 0xFF));
 		
-		logger.info(String.format("Irl_Ibl signal launched === IRl -> %d -> IBl\n",lowByte));
+		System.out.println(String.format("Irl_Ibl signal launched === IRl -> %d -> IBl",lowByte));
 		((InternalBus)InternalBus.getInstance()).setData(res);
 	}
 	
@@ -60,13 +55,13 @@ public class InstructionRegister extends AbstractRegister {
 		byte highByte = (byte) (data & 0xFF00 >> 8);
 		short res = (short) ((highByte << 8) | (lowByte & 0xFF));
 		
-		logger.info(String.format("Irl_Ibh signal launched === IRl -> %d -> IBh\n",lowByte));
+		System.out.println(String.format("Irl_Ibh signal launched === IRl -> %d -> IBh",lowByte));
 		((InternalBus)InternalBus.getInstance()).setData(res);
 	}
 	
 	public void ExtIrl_Ib() {
 		short lowByte = (short) (data & 0xFF);
-		logger.info(String.format("ExtIrl_Ibh signal launched === EXTIRl -> %d -> IBh\n", lowByte));
+		System.out.println(String.format("ExtIrl_Ibh signal launched === EXTIRl -> %d -> IBh", lowByte));
 		((InternalBus)InternalBus.getInstance()).setData(lowByte);
 	}
 
@@ -220,6 +215,11 @@ public class InstructionRegister extends AbstractRegister {
 			}
 
 			break;
+			
+		case "11111": // HALT
+			instruction = generateHalt(instruccion);
+			break;
+			
 		}
 
 		return instruction;
@@ -496,6 +496,10 @@ public class InstructionRegister extends AbstractRegister {
 		int r1 = Translate.toDecimalInteger(registro1,true);
 		
 		return new Brns(0,0,new IntegerLiteral(0,0,r1));
+	}
+	
+	private ASTNode generateHalt(String instruction) {
+		return new Halt(0,0);
 	}
 	
 }

@@ -7,6 +7,7 @@ import yiplay.language.codeGeneration.CodeGenerationVisitor;
 import yiplay.language.errorManagement.ErrorManager;
 import yiplay.language.lexicon.Lexicon;
 import yiplay.language.semantic.CheckerVisitor;
+import yiplay.language.semantic.HaltVisitor;
 import yiplay.language.semantic.SubstitutionVisitor;
 import yiplay.language.syntactic.Parser;
 import yiplay.language.visitor.Visitor;
@@ -31,6 +32,9 @@ public class Compiler {
 		
 		Visitor lengthVisitor = new CheckerVisitor();
 		parser.getAST().accept(lengthVisitor, null);
+		
+		Visitor haltVisitor = new HaltVisitor();
+		parser.getAST().accept(haltVisitor, null);
 		
 		if(ErrorManager.getManager().hasErrors())
 			return null;

@@ -17,6 +17,7 @@ import yiplay.language.ast.statement.Call;
 import yiplay.language.ast.statement.Cli;
 import yiplay.language.ast.statement.Cmp;
 import yiplay.language.ast.statement.Dec;
+import yiplay.language.ast.statement.Halt;
 import yiplay.language.ast.statement.Inc;
 import yiplay.language.ast.statement.Int;
 import yiplay.language.ast.statement.Iret;
@@ -223,6 +224,12 @@ public class CodeGenerationVisitor extends AbstractVisitor{
 		
 		instructions.add(instruction);
 		
+		return null;
+	}
+	
+	public Object visit(Halt halt, Object param) {
+		String instruction = String.format(HALT);
+		instructions.add(instruction);
 		return null;
 	}
 

@@ -5,7 +5,7 @@ import yiplay.language.syntactic.*;
 
 %%
 // ************  Options ********************
-// % debug // * Opción para depurar
+// % debug // * Opciï¿½n para depurar
 %byaccj
 %class Lexicon
 %public
@@ -51,6 +51,7 @@ CorcheteCierre = "]"
 // ----------- PALABRAS RESERVADAS -----------
 
 NOP = "NOP"
+HALT = "HALT"
 MOV = "MOV"
 MOVL = "MOVL"
 MOVH = "MOVH"

@@ -1,16 +1,12 @@
 package yiplay.tc.cpu;
 
-import java.util.logging.Logger;
-
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.register.StatusRegister;
 import yiplay.tc.cpu.register.TMPS;
 import yiplay.util.Translate;
 
 public class ArithmeticLogicUnit extends AbstractComponent{
-	
-	private final static Logger logger = Logger.getLogger( ArithmeticLogicUnit.class.getName() );
-	
+		
 	private short operand1;
 	private short operand2;
 	private short res;
@@ -59,7 +55,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		String temp = add(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
-		logger.info(String.format("Add signal launched === %d + %d = %d\n", operand1, operand2, res));
+		System.out.println(String.format("Add signal launched === %d + %d = %d", operand1, operand2, res));
 	}
 	
 	public void Sub() {
@@ -68,7 +64,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		String temp = sub(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
-		logger.info(String.format("Sub signal launched === %d - %d = %d\n", operand1, operand2, res));
+		System.out.println(String.format("Sub signal launched === %d - %d = %d", operand1, operand2, res));
 	}
 	
 	public void Or() {
@@ -77,7 +73,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		String temp = or(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
-		logger.info(String.format("Or signal launched === %d | %d = %d\n", operand1, operand2, res));
+		System.out.println(String.format("Or signal launched === %d | %d = %d", operand1, operand2, res));
 	}
 	
 	public void And() {
@@ -86,7 +82,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		String temp = and(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
-		logger.info(String.format("And signal launched === %d & %d = %d\n", operand1, operand2, res));
+		System.out.println(String.format("And signal launched === %d & %d = %d", operand1, operand2, res));
 	}
 	
 	public void Xor() {
@@ -95,17 +91,17 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		String temp = xor(Translate.toBinaryString(operand1, 16), Translate.toBinaryString(operand2, 16),16);
 		res = Translate.toDecimalInteger(temp);	
 		checkFlags();
-		logger.info(String.format("Xor signal launched === %d ^ %d = %d\n", operand1, operand2, res));
+		System.out.println(String.format("Xor signal launched === %d ^ %d = %d", operand1, operand2, res));
 	}
 	
 	public void Carry_In() {
 		carryIn = true;
-		logger.info(String.format("Carry_in signal launched === 1 -> CF\n", operand1, operand2, res));
+		System.out.println(String.format("Carry_in signal launched === 1 -> CF", operand1, operand2, res));
 	}
 	
 	public void Alu_Tmps() {
 		((TMPS)TMPS.getInstance()).setData(res);
-		logger.info(String.format("Alu_Tmps signal launched === ALU -> %d -> TMPS\n",res));
+		System.out.println(String.format("Alu_Tmps signal launched === ALU -> %d -> TMPS",res));
 	}
 	
 	public void Alu_Sr() {
@@ -124,7 +120,7 @@ public class ArithmeticLogicUnit extends AbstractComponent{
 		zcos |= Short.valueOf(c, 2) << 8;
 		zcos |= Short.valueOf(o, 2) << 4;
 		zcos |= Short.valueOf(s, 2);
-		logger.info(String.format("Alu_Sr signal launched === ALU -> X -> SR\n",res));
+		System.out.println(String.format("Alu_Sr signal launched === ALU -> %d -> SR",res));
 		
 		((StatusRegister)StatusRegister.getInstance()).setData(zcos);
 	}

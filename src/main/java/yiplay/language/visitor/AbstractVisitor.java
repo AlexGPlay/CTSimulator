@@ -131,6 +131,10 @@ public abstract class AbstractVisitor implements Visitor{
 		
 		return null;
 	}
+	
+	public Object visit(Halt halt, Object param) {
+		return null;
+	}
 
 	public Object visit(Inc ast, Object param) {
 		ast.getRsd().accept(this, param);

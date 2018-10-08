@@ -3,8 +3,6 @@ package yiplay.tc.cpu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.logging.Logger;
-
 import yiplay.language.ast.Program;
 import yiplay.language.ast.expression.BinaryLiteral;
 import yiplay.language.ast.expression.HexLiteral;
@@ -24,6 +22,7 @@ import yiplay.language.ast.statement.Call;
 import yiplay.language.ast.statement.Cli;
 import yiplay.language.ast.statement.Cmp;
 import yiplay.language.ast.statement.Dec;
+import yiplay.language.ast.statement.Halt;
 import yiplay.language.ast.statement.Inc;
 import yiplay.language.ast.statement.Int;
 import yiplay.language.ast.statement.Iret;
@@ -55,9 +54,7 @@ import yiplay.tc.cpu.register.TMPS;
 import yiplay.tc.memory.Memory;
 
 public class ControlUnit extends AbstractComponent implements Visitor{
-	
-	private final static Logger logger = Logger.getLogger( ControlUnit.class.getName() );
-	
+		
 	public static final int NOP_CYCLES = 1;
 	public static final int MOV_RD_RS_CYCLES = 1;
 	public static final int MOV_RD_RI_CYCLES = 3;
@@ -87,6 +84,7 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 	public static final int RET_CYCLES = 3;
 	public static final int BR_TRUE_CYCLES = 3;
 	public static final int BR_FALSE_CYCLES = 1;
+	public static final int HALT_CYCLES = 1;
 	public static final int BASIC_CYCLES = 3;
 	
 	private static AbstractComponent instance;
@@ -95,10 +93,12 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 	private int actualCycle;
 	private int totalCycles;
 	private boolean finishedInstruction;
+	private boolean finishedExecution;
 	
 	private ControlUnit() {
 		actualCycle = 0;
 		totalCycles = 0;
+		finishedExecution = false;
 		Fin();
 	}
 	
@@ -116,12 +116,16 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 		return cycles;
 	}
 	
+	public boolean isExecutionFinished() {
+		return finishedExecution;
+	}
+	
 	public int getTotalCycles() {
 		return totalCycles;
 	}
 	
 	public void runAll() {
-		while(true)
+		while(!finishedExecution)
 			runInstruction();
 	}
 	
@@ -152,7 +156,14 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 		basicCycle();
 		actualCycle = 0;
 		finishedInstruction = true;
-		logger.info("Fin signal launched\n");
+		System.out.println("Fin signal launched");
+	}
+	
+	public void FinExecution() {
+		actualCycle = 0;
+		finishedInstruction = true;
+		finishedExecution = true;
+		System.out.println("Exeuction end signal launched");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -568,6 +579,17 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 		cycles[1].add( (Void) -> ((ArithmeticLogicUnit)ArithmeticLogicUnit.getInstance()).Sub() );
 		cycles[1].add( (Void) -> ((ArithmeticLogicUnit)ArithmeticLogicUnit.getInstance()).Alu_Sr() );
 		cycles[1].add( (Void) -> Fin() );
+		
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Object visit(Halt ast, Object param) {
+		cycles = (List<Consumer<Void>>[])new List[HALT_CYCLES];
+		initializeArray();
+		
+		cycles[0].add( (Void) -> FinExecution() );
 		
 		return null;
 	}

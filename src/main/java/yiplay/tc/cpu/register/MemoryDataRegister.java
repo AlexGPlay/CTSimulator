@@ -1,15 +1,11 @@
 package yiplay.tc.cpu.register;
 
-import java.util.logging.Logger;
-
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.bus.InternalBus;
 import yiplay.tc.memory.bus.DataBus;
 
 public class MemoryDataRegister extends AbstractRegister{
-	
-	private final static Logger logger = Logger.getLogger( MemoryDataRegister.class.getName() );
-	
+		
 	private static AbstractComponent instance;
 	
 	private MemoryDataRegister() {
@@ -32,7 +28,7 @@ public class MemoryDataRegister extends AbstractRegister{
 	}
 	
 	public void Mdr_Ib() {
-		logger.info(String.format("Mdr_Ib signal launched === MAR -> %d -> IB\n",data));
+		System.out.println(String.format("Mdr_Ib signal launched === MAR -> %d -> IB",data));
 		((InternalBus) InternalBus.getInstance()).setData(data);
 	}
 

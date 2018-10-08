@@ -798,6 +798,14 @@ public class InstructionTest {
 	}
 	
 	@Test
+	public void testHalt() {
+		Statement halt = new Halt(0,0);
+		String code = "Halt";
+		Program ast = (Program)compile(code);
+		assertEquals(halt,ast.getStatements().get(0));
+	}
+	
+	@Test
 	public void testNot() {
 		for(int i=0;i<8;i++) {
 			String code = "Not R" + i;

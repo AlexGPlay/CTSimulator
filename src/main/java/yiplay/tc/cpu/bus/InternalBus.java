@@ -1,7 +1,5 @@
 package yiplay.tc.cpu.bus;
 
-import java.util.logging.Logger;
-
 import yiplay.tc.AbstractBus;
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.ArithmeticLogicUnit;
@@ -9,7 +7,6 @@ import yiplay.tc.cpu.register.*;
 
 public class InternalBus extends AbstractBus{
 
-	private final static Logger logger = Logger.getLogger( InternalBus.class.getName() );
 	private static AbstractComponent instance;
 	
 	private InternalBus() {}
@@ -27,7 +24,7 @@ public class InternalBus extends AbstractBus{
 	}
 	
 	public void Ib_Rx(int register) {
-		logger.info(String.format("Ib_R%d signal launched === IB -> %d -> R%d\n",register,data,register));
+		System.out.println(String.format("Ib_R%d signal launched === IB -> %d -> R%d",register,data,register));
 		((GeneralPurpousesRegisters) GeneralPurpousesRegisters.getInstance()).setData(register, data);
 	}
 
@@ -38,7 +35,7 @@ public class InternalBus extends AbstractBus{
 		res |= lowByte;
 		res |= highByte;
 		
-		logger.info(String.format("Ibh_R%dh signal launched === IBh -> %d -> R%dh\n",register,highByte,register));
+		System.out.println(String.format("Ibh_R%dh signal launched === IBh -> %d -> R%dh",register,highByte,register));
 		((GeneralPurpousesRegisters)GeneralPurpousesRegisters.getInstance()).setData(register,res);
 	}
 
@@ -49,37 +46,37 @@ public class InternalBus extends AbstractBus{
 		res |= lowByte;
 		res |= highByte;
 		
-		logger.info(String.format("Ibl_R%dl signal launched === IB -> %d -> R%d\n",register,lowByte,register));
+		System.out.println(String.format("Ibl_R%dl signal launched === IB -> %d -> R%d",register,lowByte,register));
 		((GeneralPurpousesRegisters)GeneralPurpousesRegisters.getInstance()).setData(register,res);
 	}
 
 	public void Ib_Ir() {
-		logger.info(String.format("Ib_Ir signal launched === IB -> %d -> IR\n",data));
+		System.out.println(String.format("Ib_Ir signal launched === IB -> %d -> IR",data));
 		((InstructionRegister) InstructionRegister.getInstance()).setData(data);
 	}
 
 	public void Ib_Pc() {
-		logger.info(String.format("Ib_Pc signal launched === IB -> %d -> PC\n",data));
+		System.out.println(String.format("Ib_Pc signal launched === IB -> %d -> PC ",data));
 		((ProgramCounter) ProgramCounter.getInstance()).setData(data);
 	}
 
 	public void Ib_Mar() {
-		logger.info(String.format("Ib_Mar signal launched === IB -> %d -> MAR\n",data));
+		System.out.println(String.format("Ib_Mar signal launched === IB -> %d -> MAR ",data));
 		((MemoryAddressRegister) MemoryAddressRegister.getInstance()).setData(data);
 	}
 
 	public void Ib_Mdr() {
-		logger.info(String.format("Ib_Mdr signal launched === IB -> %d -> MDR\n",data));
+		System.out.println(String.format("Ib_Mdr signal launched === IB -> %d -> MDR ",data));
 		((MemoryDataRegister) MemoryDataRegister.getInstance()).setData(data);
 	}
 
 	public void Ib_Tmpe() {
-		logger.info(String.format("Ib_Tmpe signal launched === IB -> %d -> TMPE\n",data));
+		System.out.println(String.format("Ib_Tmpe signal launched === IB -> %d -> TMPE ",data));
 		((TMPE) TMPE.getInstance()).setData(data);
 	}
 
 	public void Ib_Sr() {
-		logger.info(String.format("Ib_Sr signal launched === IB -> %d -> SR\n",data));
+		System.out.println(String.format("Ib_Sr signal launched === IB -> %d -> SR ",data));
 		((StatusRegister) StatusRegister.getInstance()).setData(data);
 	}
 

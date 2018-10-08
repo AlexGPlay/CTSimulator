@@ -489,6 +489,16 @@ public class CodeGenerationTest {
 			assertEquals(dec,res);
 		}
 	}
+	
+	@Test
+	public void testHalt() {
+		String code = "HALT";
+		String cli = String.format(CodeGenerationVisitor.HALT);
+
+		String res = compile(code).get(0);
+
+		assertEquals(cli,res);
+	}
 
 	@Test
 	public void testInc() {

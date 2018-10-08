@@ -910,5 +910,16 @@ public class SingleExecutionTest {
 
 		assertEquals(res,pC.getData());
 	}
+	
+	
+	@Test
+	public void haltTest() {
+		Halt halt = new Halt(0,0);
+		halt.accept(cU, null);
+		assertFalse(cU.isExecutionFinished());
+		cU.runInstruction();
+		assertTrue(cU.isExecutionFinished());
+	}
+
 
 }

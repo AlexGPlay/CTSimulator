@@ -1,15 +1,11 @@
 package yiplay.tc.cpu.register;
 
-import java.util.logging.Logger;
-
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.bus.InternalBus;
 import yiplay.util.Translate;
 
 public class StatusRegister extends AbstractRegister{
-	
-	private final static Logger logger = Logger.getLogger( StatusRegister.class.getName() );
-	
+		
 	private int zf, cf, of, sf, intf;
 	
 	private static AbstractComponent instance;
@@ -68,16 +64,18 @@ public class StatusRegister extends AbstractRegister{
 		zcos |= Short.valueOf(o, 2) << 4;
 		zcos |= Short.valueOf(s, 2);
 		
-		logger.info(String.format("Sr_Ib signal launched === SR -> %d%d%d%d -> IB\n",zf,cf,of,sf));
+		System.out.println(String.format("Sr_Ib signal launched === SR -> %d%d%d%d -> IB",zf,cf,of,sf));
 		((InternalBus) InternalBus.getInstance()).setData(zcos);
 	}
 	
 	public void Cli() {
 		intf = 0;
+		System.out.println("Cli signal launched ==> IF -> 0");
 	}
 	
 	public void Sti() {
 		intf = 1;
+		System.out.println("Sti signal launched ==> IF -> 1");
 	}
 
 	public void reset() {

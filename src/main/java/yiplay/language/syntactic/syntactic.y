@@ -29,6 +29,7 @@ label: 'STRING' ':'																					{ $$ = new Label(lexicon.getLine(), lexi
 	 ;
 	 
 instructions: 'NOP'																						{ $$ = new Nop(lexicon.getLine(), lexicon.getColumn()); }
+		    | 'HALT'																					{ $$ = new Halt(lexicon.getLine(), lexicon.getColumn()); }
 		    | 'MOV' registro ',' registro																{ $$ = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)$2, (Expression)$4, 0); }
 		    | 'MOV' registro ',' '[' registro ']'														{ $$ = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)$2, (Expression)$5, 1); }
 		    | 'MOV' '[' registro ']' ',' registro														{ $$ = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)$3, (Expression)$6, 2); }
