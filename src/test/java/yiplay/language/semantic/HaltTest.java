@@ -64,7 +64,7 @@ public class HaltTest {
 			fail("Program is null");
 		
 		assertEquals(program.getStatements().size(), 2);
-		assertNotEquals(program.getStatements().get(program.getStatements().size()-1), new Halt(0,0));
+		assertEquals(program.getStatements().get(program.getStatements().size()-1), new Halt(0,0));
 	
 	}
 	

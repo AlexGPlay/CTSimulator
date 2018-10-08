@@ -1,15 +1,23 @@
 package yiplay.tc.cpu.bus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import yiplay.tc.AbstractBus;
 import yiplay.tc.AbstractComponent;
 import yiplay.tc.cpu.ArithmeticLogicUnit;
 import yiplay.tc.cpu.register.*;
+import yiplay.util.observer.IBNotifier;
+import yiplay.util.observer.IBObserver;
 
-public class InternalBus extends AbstractBus{
+public class InternalBus extends AbstractBus implements IBNotifier{
 
 	private static AbstractComponent instance;
+	private List<IBObserver> observers;
 	
-	private InternalBus() {}
+	private InternalBus() {
+		observers = new ArrayList<>();
+	}
 
 	public static AbstractComponent getInstance() {
 		if(instance == null)
@@ -21,6 +29,7 @@ public class InternalBus extends AbstractBus{
 	public void setData(short data) {
 		this.data = data;
 		((ArithmeticLogicUnit)ArithmeticLogicUnit.getInstance()).setOperand2(data);
+		notifyObservers();
 	}
 	
 	public void Ib_Rx(int register) {
@@ -78,6 +87,22 @@ public class InternalBus extends AbstractBus{
 	public void Ib_Sr() {
 		System.out.println(String.format("Ib_Sr signal launched === IB -> %d -> SR ",data));
 		((StatusRegister) StatusRegister.getInstance()).setData(data);
+	}
+
+	@Override
+	public void notifyObservers() {
+		for(IBObserver observer : observers)
+			observer.updateIB(data);
+	}
+
+	@Override
+	public void addObserver(IBObserver observer) {
+		observers.add(observer);
+	}
+
+	@Override
+	public void removeObserver(IBObserver observer) {
+		observers.remove(observer);
 	}
 
 }

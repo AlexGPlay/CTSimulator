@@ -153,7 +153,13 @@ BRNS = "BRNS"
 // * Reservada NOP
 {NOP}	{ 
 	this.yylval = new String(yytext());
-	return Parser.NOP;  
+	return TokenInfo.NOP;  
+}
+
+// * Reservada HALT
+{HALT}	{
+	this.yylval = new String(yytext());
+	return TokenInfo.HALT;
 }
 
 // * Reservada MOV

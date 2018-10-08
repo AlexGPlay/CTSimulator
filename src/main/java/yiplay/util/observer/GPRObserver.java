@@ -2,6 +2,6 @@ package yiplay.util.observer;
 
 public interface GPRObserver {
 
-	void updateGPR(short[] data);
+	void updateGPR(int register, short data);
 	
 }

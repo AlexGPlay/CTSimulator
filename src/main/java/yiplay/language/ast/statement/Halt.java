@@ -9,7 +9,6 @@ public class Halt extends Statement{
 		super(line, column);
 	}
 
-	@Override
 	public Object accept(Visitor visitor, Object param) {
 		return visitor.visit(this, param);
 	}

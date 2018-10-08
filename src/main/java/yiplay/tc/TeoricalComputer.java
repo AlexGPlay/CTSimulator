@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import yiplay.tc.cpu.ControlUnit;
+import yiplay.tc.cpu.bus.InternalBus;
 import yiplay.tc.cpu.register.GeneralPurpousesRegisters;
 import yiplay.tc.cpu.register.ProgramCounter;
 import yiplay.tc.cpu.register.StatusRegister;
 import yiplay.tc.memory.Memory;
 import yiplay.util.Translate;
 import yiplay.util.observer.GPRObserver;
+import yiplay.util.observer.IBObserver;
 import yiplay.util.observer.MemoryObserver;
 
 public class TeoricalComputer {
@@ -47,6 +49,10 @@ public class TeoricalComputer {
 	
 	public void registerGPRObserver(GPRObserver observer) {
 		((GeneralPurpousesRegisters)GeneralPurpousesRegisters.getInstance()).addObserver(observer);
+	}
+	
+	public void registerIBObserver(IBObserver observer) {
+		((InternalBus)InternalBus.getInstance()).addObserver(observer);
 	}
 	
 }

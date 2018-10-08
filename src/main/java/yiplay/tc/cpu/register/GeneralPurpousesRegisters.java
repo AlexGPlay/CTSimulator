@@ -21,7 +21,8 @@ public class GeneralPurpousesRegisters extends AbstractRegister implements GPRNo
 		registers = new short[NUM_REGISTERS];
 		registers[7] = -1;
 		observers = new ArrayList<>();
-		notifyObservers();
+		for(int i=0;i<registers.length;i++)
+			notifyObservers(i, registers[i]);
 	}
 
 	public static AbstractComponent getInstance() {
@@ -33,7 +34,8 @@ public class GeneralPurpousesRegisters extends AbstractRegister implements GPRNo
 	public void resetRegisters() {
 		registers = new short[NUM_REGISTERS];
 		registers[7] = -1;
-		notifyObservers();
+		for(int i=0;i<registers.length;i++)
+			notifyObservers(i, registers[i]);
 	}
 	
 	public short[] getRegisters() {
@@ -42,7 +44,7 @@ public class GeneralPurpousesRegisters extends AbstractRegister implements GPRNo
 	
 	public void setData(int register, short data) {
 		registers[register] = data;
-		notifyObservers();
+		notifyObservers(register, data);
 	}
 	
 	public short getData(int register) {
@@ -55,9 +57,9 @@ public class GeneralPurpousesRegisters extends AbstractRegister implements GPRNo
 	}
 
 	@Override
-	public void notifyObservers() {
+	public void notifyObservers(int register, short data) {
 		for(GPRObserver ob : observers)
-			ob.updateGPR(registers);
+			ob.updateGPR(register,data);
 	}
 
 	@Override

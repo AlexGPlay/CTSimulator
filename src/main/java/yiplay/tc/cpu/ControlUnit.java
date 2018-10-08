@@ -156,6 +156,7 @@ public class ControlUnit extends AbstractComponent implements Visitor{
 		basicCycle();
 		actualCycle = 0;
 		finishedInstruction = true;
+		finishedExecution = false;
 		System.out.println("Fin signal launched");
 	}
 	

@@ -17,7 +17,7 @@ package yiplay.language.syntactic;
 
 
 
-//#line 2 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 2 "syntactic.y"
 import yiplay.language.lexicon.*;
 import yiplay.language.ast.*;
 import yiplay.language.ast.statement.*;
@@ -156,41 +156,41 @@ final Object dup_yyval(Object val)
 //#### end semantic value section ####
 public final static short STRING=257;
 public final static short NOP=258;
-public final static short HALT = 500;
-public final static short MOV=259;
-public final static short MOVL=260;
-public final static short MOVH=261;
-public final static short PUSH=262;
-public final static short POP=263;
-public final static short ADD=264;
-public final static short SUB=265;
-public final static short OR=266;
-public final static short AND=267;
-public final static short XOR=268;
-public final static short CMP=269;
-public final static short NOT=270;
-public final static short INC=271;
-public final static short DEC=272;
-public final static short NEG=273;
-public final static short CLI=274;
-public final static short STI=275;
-public final static short INT=276;
-public final static short IRET=277;
-public final static short JMP=278;
-public final static short CALL=279;
-public final static short RET=280;
-public final static short BRC=281;
-public final static short BRNC=282;
-public final static short BRO=283;
-public final static short BRNO=284;
-public final static short BRZ=285;
-public final static short BRNZ=286;
-public final static short BRS=287;
-public final static short BRNS=288;
-public final static short REGISTRO=289;
-public final static short NUMERO_ENTERO=290;
-public final static short NUMERO_HEXADECIMAL=291;
-public final static short NUMERO_BINARIO=292;
+public final static short HALT=259;
+public final static short MOV=260;
+public final static short MOVL=261;
+public final static short MOVH=262;
+public final static short PUSH=263;
+public final static short POP=264;
+public final static short ADD=265;
+public final static short SUB=266;
+public final static short OR=267;
+public final static short AND=268;
+public final static short XOR=269;
+public final static short CMP=270;
+public final static short NOT=271;
+public final static short INC=272;
+public final static short DEC=273;
+public final static short NEG=274;
+public final static short CLI=275;
+public final static short STI=276;
+public final static short INT=277;
+public final static short IRET=278;
+public final static short JMP=279;
+public final static short CALL=280;
+public final static short RET=281;
+public final static short BRC=282;
+public final static short BRNC=283;
+public final static short BRO=284;
+public final static short BRNO=285;
+public final static short BRZ=286;
+public final static short BRNZ=287;
+public final static short BRS=288;
+public final static short BRNS=289;
+public final static short REGISTRO=290;
+public final static short NUMERO_ENTERO=291;
+public final static short NUMERO_HEXADECIMAL=292;
+public final static short NUMERO_BINARIO=293;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
     0,    1,    1,    2,    2,    4,    3,    3,    3,    3,
@@ -198,46 +198,46 @@ final static short yylhs[] = {                           -1,
     3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
     3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
     3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-    3,    5,    6,    6,    6,
+    3,    3,    5,    6,    6,    6,
 };
 final static short yylen[] = {                            2,
-    1,    0,    2,    1,    1,    2,    1,    4,    6,    6,
-    4,    4,    2,    2,    6,    6,    6,    6,    6,    4,
-    2,    2,    2,    2,    1,    1,    2,    1,    2,    2,
-    2,    2,    2,    2,    1,    2,    2,    2,    2,    2,
+    1,    0,    2,    1,    1,    2,    1,    1,    4,    6,
+    6,    4,    4,    2,    2,    6,    6,    6,    6,    6,
+    4,    2,    2,    2,    2,    1,    1,    2,    1,    2,
+    2,    2,    2,    2,    2,    1,    2,    2,    2,    2,
     2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-    2,    1,    1,    1,    1,
+    2,    2,    1,    1,    1,    1,
 };
 final static short yydefred[] = {                         2,
-    0,    0,    0,    7,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,   25,
-   26,    0,   28,    0,    0,   35,    0,    0,    0,    0,
-    0,    0,    0,    0,    3,    4,    5,    6,    0,   52,
-    0,    0,    0,   13,   14,    0,    0,    0,    0,    0,
-    0,   21,   22,   23,   24,   53,   54,   55,   27,   30,
-   31,   29,   33,   34,   32,   37,   36,   39,   38,   41,
-   40,   43,   42,   45,   44,   47,   46,   49,   48,   51,
-   50,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    8,   11,   12,    0,    0,    0,    0,
-    0,   20,    0,    0,    0,    0,    0,    0,    0,   10,
-    9,   15,   16,   17,   18,   19,
+    0,    0,    0,    7,    8,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+   26,   27,    0,   29,    0,    0,   36,    0,    0,    0,
+    0,    0,    0,    0,    0,    3,    4,    5,    6,    0,
+   53,    0,    0,    0,   14,   15,    0,    0,    0,    0,
+    0,    0,   22,   23,   24,   25,   54,   55,   56,   28,
+   31,   32,   30,   34,   35,   33,   38,   37,   40,   39,
+   42,   41,   44,   43,   46,   45,   48,   47,   50,   49,
+   52,   51,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    9,   12,   13,    0,    0,    0,
+    0,    0,   21,    0,    0,    0,    0,    0,    0,    0,
+   11,   10,   16,   17,   18,   19,   20,
 };
 final static short yydgoto[] = {                          1,
-    2,   35,   36,   37,   41,   59,
+    2,   36,   37,   38,   42,   60,
 };
 final static short yysindex[] = {                         0,
-    0, -130,  -35,    0,  -91, -265, -265, -265, -265, -265,
- -265, -265, -265, -265, -265, -265, -265, -265, -265,    0,
-    0, -273,    0, -241, -235,    0, -232, -229, -226, -184,
- -181, -177, -169, -166,    0,    0,    0,    0, -265,    0,
-  -18,  -17,  -15,    0,    0,  -14,  -12,    1,    2,    3,
-    8,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0, -132,  -35,    0,    0,  -91, -266, -266, -266, -266,
+ -266, -266, -266, -266, -266, -266, -266, -266, -266, -266,
+    0,    0, -274,    0, -241, -235,    0, -232, -229, -226,
+ -185, -182, -179, -176, -169,    0,    0,    0,    0, -266,
+    0,  -18,  -17,  -15,    0,    0,  -14,  -12,    1,    2,
+    3,    4,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,  -49,  -90, -273, -273, -265, -265, -265, -265, -265,
- -265,   23, -265,    0,    0,    0,   24,   25,   26,   27,
-   28,    0, -265,  -40, -265, -265, -265, -265, -265,    0,
-    0,    0,    0,    0,    0,    0,
+    0,    0,  -49,  -90, -274, -274, -266, -266, -266, -266,
+ -266, -266,    9, -266,    0,    0,    0,   10,   24,   25,
+   26,   27,    0, -266,  -20, -266, -266, -266, -266, -266,
+    0,    0,    0,    0,    0,    0,    0,
 };
 final static short yyrindex[] = {                         0,
     0,   74,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -251,66 +251,66 @@ final static short yyrindex[] = {                         0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,
 };
 final static short yygindex[] = {                         0,
-    0,    0,    0,    0,   -4,    9,
+    0,    0,    0,    0,   -5,    8,
 };
-final static int YYTABLESIZE=199;
+final static int YYTABLESIZE=200;
 static short yytable[];
 static { yytable();}
 static void yytable(){
-yytable = new short[]{                         39,
-   93,   42,   43,   44,   45,   46,   47,   48,   49,   50,
-   51,   52,   53,   54,   55,   60,   56,   57,   58,   61,
-   64,   63,   38,   40,   66,   83,   84,   68,   85,   86,
-   70,   87,   62,   65,   82,   67,   69,   71,   73,   75,
-   77,   79,   81,   92,   88,   89,   90,   40,   56,   57,
-   58,   91,  111,   40,   56,   57,   58,   56,   57,   58,
-   56,   57,   58,   56,   57,   58,  103,  105,  106,  107,
-  108,  109,   72,    1,    0,   74,    0,    0,   94,   76,
-    0,   97,   98,   99,  100,  101,  102,   78,  104,    0,
-   80,    0,   95,   96,    0,    0,    0,    0,  110,    0,
-  112,  113,  114,  115,  116,   56,   57,   58,   56,   57,
-   58,    0,   56,   57,   58,    0,    0,    0,    0,    0,
-   56,   57,   58,   56,   57,   58,    3,    4,    5,    6,
-    7,    8,    9,   10,   11,   12,   13,   14,   15,   16,
-   17,   18,   19,   20,   21,   22,   23,   24,   25,   26,
-   27,   28,   29,   30,   31,   32,   33,   34,    0,    0,
+yytable = new short[]{                         40,
+   94,   43,   44,   45,   46,   47,   48,   49,   50,   51,
+   52,   53,   54,   55,   56,   61,   57,   58,   59,   62,
+   65,   64,   39,   41,   67,   84,   85,   69,   86,   87,
+   71,   88,   63,   66,   83,   68,   70,   72,   74,   76,
+   78,   80,   82,   93,   89,   90,   91,   92,   41,   57,
+   58,   59,  104,  106,   41,   57,   58,   59,   57,   58,
+   59,   57,   58,   59,   57,   58,   59,  107,  108,  109,
+  110,   73,  112,    1,   75,    0,    0,   77,   95,    0,
+   79,   98,   99,  100,  101,  102,  103,   81,  105,    0,
+    0,    0,   96,   97,    0,    0,    0,    0,  111,    0,
+  113,  114,  115,  116,  117,   57,   58,   59,   57,   58,
+   59,   57,   58,   59,   57,   58,   59,    0,    0,    0,
+    0,   57,   58,   59,    3,    4,    5,    6,    7,    8,
+    9,   10,   11,   12,   13,   14,   15,   16,   17,   18,
+   19,   20,   21,   22,   23,   24,   25,   26,   27,   28,
+   29,   30,   31,   32,   33,   34,   35,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,   40,   40,
+    0,    0,    0,    0,    0,    0,    0,    0,   41,   41,
 };
 }
 static short yycheck[];
 static { yycheck(); }
 static void yycheck() {
 yycheck = new short[] {                         91,
-   91,    6,    7,    8,    9,   10,   11,   12,   13,   14,
-   15,   16,   17,   18,   19,  257,  290,  291,  292,   24,
-   25,  257,   58,  289,  257,   44,   44,  257,   44,   44,
-  257,   44,   24,   25,   39,   27,   28,   29,   30,   31,
-   32,   33,   34,   93,   44,   44,   44,  289,  290,  291,
-  292,   44,   93,  289,  290,  291,  292,  290,  291,  292,
-  290,  291,  292,  290,  291,  292,   44,   44,   44,   44,
-   44,   44,  257,    0,   -1,  257,   -1,   -1,   83,  257,
-   -1,   86,   87,   88,   89,   90,   91,  257,   93,   -1,
-  257,   -1,   84,   85,   -1,   -1,   -1,   -1,  103,   -1,
-  105,  106,  107,  108,  109,  290,  291,  292,  290,  291,
-  292,   -1,  290,  291,  292,   -1,   -1,   -1,   -1,   -1,
-  290,  291,  292,  290,  291,  292,  257,  258,  259,  260,
-  261,  262,  263,  264,  265,  266,  267,  268,  269,  270,
-  271,  272,  273,  274,  275,  276,  277,  278,  279,  280,
-  281,  282,  283,  284,  285,  286,  287,  288,   -1,   -1,
+   91,    7,    8,    9,   10,   11,   12,   13,   14,   15,
+   16,   17,   18,   19,   20,  257,  291,  292,  293,   25,
+   26,  257,   58,  290,  257,   44,   44,  257,   44,   44,
+  257,   44,   25,   26,   40,   28,   29,   30,   31,   32,
+   33,   34,   35,   93,   44,   44,   44,   44,  290,  291,
+  292,  293,   44,   44,  290,  291,  292,  293,  291,  292,
+  293,  291,  292,  293,  291,  292,  293,   44,   44,   44,
+   44,  257,   93,    0,  257,   -1,   -1,  257,   84,   -1,
+  257,   87,   88,   89,   90,   91,   92,  257,   94,   -1,
+   -1,   -1,   85,   86,   -1,   -1,   -1,   -1,  104,   -1,
+  106,  107,  108,  109,  110,  291,  292,  293,  291,  292,
+  293,  291,  292,  293,  291,  292,  293,   -1,   -1,   -1,
+   -1,  291,  292,  293,  257,  258,  259,  260,  261,  262,
+  263,  264,  265,  266,  267,  268,  269,  270,  271,  272,
+  273,  274,  275,  276,  277,  278,  279,  280,  281,  282,
+  283,  284,  285,  286,  287,  288,  289,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,  289,  289,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  290,  290,
 };
 }
 final static short YYFINAL=1;
-final static short YYMAXTOKEN=292;
+final static short YYMAXTOKEN=293;
 final static String yyname[] = {
 "end-of-file",null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
@@ -328,12 +328,13 @@ null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-null,null,null,null,null,null,null,"\"STRING\"","\"NOP\"","\"MOV\"","\"MOVL\"",
-"\"MOVH\"","\"PUSH\"","\"POP\"","\"ADD\"","\"SUB\"","\"OR\"","\"AND\"",
-"\"XOR\"","\"CMP\"","\"NOT\"","\"INC\"","\"DEC\"","\"NEG\"","\"CLI\"","\"STI\"",
-"\"INT\"","\"IRET\"","\"JMP\"","\"CALL\"","\"RET\"","\"BRC\"","\"BRNC\"",
-"\"BRO\"","\"BRNO\"","\"BRZ\"","\"BRNZ\"","\"BRS\"","\"BRNS\"","\"REGISTRO\"",
-"\"NUMERO_ENTERO\"","\"NUMERO_HEXADECIMAL\"","\"NUMERO_BINARIO\"",
+null,null,null,null,null,null,null,"\"STRING\"","\"NOP\"","\"HALT\"","\"MOV\"",
+"\"MOVL\"","\"MOVH\"","\"PUSH\"","\"POP\"","\"ADD\"","\"SUB\"","\"OR\"",
+"\"AND\"","\"XOR\"","\"CMP\"","\"NOT\"","\"INC\"","\"DEC\"","\"NEG\"","\"CLI\"",
+"\"STI\"","\"INT\"","\"IRET\"","\"JMP\"","\"CALL\"","\"RET\"","\"BRC\"",
+"\"BRNC\"","\"BRO\"","\"BRNO\"","\"BRZ\"","\"BRNZ\"","\"BRS\"","\"BRNS\"",
+"\"REGISTRO\"","\"NUMERO_ENTERO\"","\"NUMERO_HEXADECIMAL\"",
+"\"NUMERO_BINARIO\"",
 };
 final static String yyrule[] = {
 "$accept : program",
@@ -344,6 +345,7 @@ final static String yyrule[] = {
 "statement : label",
 "label : \"STRING\" ':'",
 "instructions : \"NOP\"",
+"instructions : \"HALT\"",
 "instructions : \"MOV\" registro ',' registro",
 "instructions : \"MOV\" registro ',' '[' registro ']'",
 "instructions : \"MOV\" '[' registro ']' ',' registro",
@@ -394,7 +396,7 @@ final static String yyrule[] = {
 "numeros : \"NUMERO_BINARIO\"",
 };
 
-//#line 85 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 86 "syntactic.y"
 
 private Lexicon lexicon;
 private ASTNode ast;
@@ -421,7 +423,7 @@ public Parser(Lexicon lexicon) {
 public ASTNode getAST(){
 	return this.ast;
 }
-//#line 360 "Parser.java"
+//#line 363 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -576,226 +578,230 @@ boolean doaction;
       {
 //########## USER-SUPPLIED ACTIONS ##########
 case 1:
-//#line 17 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 17 "syntactic.y"
 { this.ast = new Program(lexicon.getLine(), lexicon.getColumn(), (ArrayList<Statement>)val_peek(0)); }
 break;
 case 2:
-//#line 20 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 20 "syntactic.y"
 { yyval = new ArrayList<Statement>(); }
 break;
 case 3:
-//#line 21 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 21 "syntactic.y"
 { ((ArrayList<Statement>)val_peek(1)).add((Statement)val_peek(0)); yyval = val_peek(1); }
 break;
 case 4:
-//#line 24 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 24 "syntactic.y"
 { yyval = val_peek(0); }
 break;
 case 5:
-//#line 25 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 25 "syntactic.y"
 { yyval = val_peek(0); }
 break;
 case 6:
-//#line 28 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 28 "syntactic.y"
 { yyval = new Label(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(1)); }
 break;
 case 7:
-//#line 31 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 31 "syntactic.y"
 { yyval = new Nop(lexicon.getLine(), lexicon.getColumn()); }
 break;
 case 8:
-//#line 32 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0), 0); }
+//#line 32 "syntactic.y"
+{ yyval = new Halt(lexicon.getLine(), lexicon.getColumn()); }
 break;
 case 9:
-//#line 33 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(1), 1); }
+//#line 33 "syntactic.y"
+{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0), 0); }
 break;
 case 10:
-//#line 34 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(3), (Expression)val_peek(0), 2); }
+//#line 34 "syntactic.y"
+{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(1), 1); }
 break;
 case 11:
-//#line 35 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Movl(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 35 "syntactic.y"
+{ yyval = new Mov(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(3), (Expression)val_peek(0), 2); }
 break;
 case 12:
-//#line 36 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Movh(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 36 "syntactic.y"
+{ yyval = new Movl(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 13:
-//#line 37 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Push(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 37 "syntactic.y"
+{ yyval = new Movh(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 14:
-//#line 38 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Pop(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 38 "syntactic.y"
+{ yyval = new Push(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 15:
-//#line 39 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Add(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 39 "syntactic.y"
+{ yyval = new Pop(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 16:
-//#line 40 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Sub(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 40 "syntactic.y"
+{ yyval = new Add(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 17:
-//#line 41 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Or(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 41 "syntactic.y"
+{ yyval = new Sub(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 18:
-//#line 42 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new And(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 42 "syntactic.y"
+{ yyval = new Or(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 19:
-//#line 43 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Xor(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 43 "syntactic.y"
+{ yyval = new And(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 20:
-//#line 44 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Cmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
+//#line 44 "syntactic.y"
+{ yyval = new Xor(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(4), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 21:
-//#line 45 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Not(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 45 "syntactic.y"
+{ yyval = new Cmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(2), (Expression)val_peek(0)); }
 break;
 case 22:
-//#line 46 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Inc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 46 "syntactic.y"
+{ yyval = new Not(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 23:
-//#line 47 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Dec(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 47 "syntactic.y"
+{ yyval = new Inc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 24:
-//#line 48 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Neg(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 48 "syntactic.y"
+{ yyval = new Dec(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 25:
-//#line 49 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Cli(lexicon.getLine(), lexicon.getColumn()); }
+//#line 49 "syntactic.y"
+{ yyval = new Neg(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 26:
-//#line 50 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Sti(lexicon.getLine(), lexicon.getColumn()); }
+//#line 50 "syntactic.y"
+{ yyval = new Cli(lexicon.getLine(), lexicon.getColumn()); }
 break;
 case 27:
-//#line 51 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Int(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 51 "syntactic.y"
+{ yyval = new Sti(lexicon.getLine(), lexicon.getColumn()); }
 break;
 case 28:
-//#line 52 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Iret(lexicon.getLine(), lexicon.getColumn()); }
+//#line 52 "syntactic.y"
+{ yyval = new Int(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 29:
-//#line 53 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 0); }
+//#line 53 "syntactic.y"
+{ yyval = new Iret(lexicon.getLine(), lexicon.getColumn()); }
 break;
 case 30:
-//#line 54 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 54 "syntactic.y"
+{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 0); }
 break;
 case 31:
-//#line 55 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 1); }
+//#line 55 "syntactic.y"
+{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 32:
-//#line 56 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 0); }
+//#line 56 "syntactic.y"
+{ yyval = new Jmp(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 1); }
 break;
 case 33:
-//#line 57 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 57 "syntactic.y"
+{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 0); }
 break;
 case 34:
-//#line 58 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 1); }
+//#line 58 "syntactic.y"
+{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 35:
-//#line 59 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Ret(lexicon.getLine(), lexicon.getColumn()); }
+//#line 59 "syntactic.y"
+{ yyval = new Call(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0), 1); }
 break;
 case 36:
-//#line 60 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 60 "syntactic.y"
+{ yyval = new Ret(lexicon.getLine(), lexicon.getColumn()); }
 break;
 case 37:
-//#line 61 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brc(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 61 "syntactic.y"
+{ yyval = new Brc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 38:
-//#line 62 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brnc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 62 "syntactic.y"
+{ yyval = new Brc(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 39:
-//#line 63 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brnc(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 63 "syntactic.y"
+{ yyval = new Brnc(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 40:
-//#line 64 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Bro(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 64 "syntactic.y"
+{ yyval = new Brnc(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 41:
-//#line 65 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Bro(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 65 "syntactic.y"
+{ yyval = new Bro(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 42:
-//#line 66 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brno(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 66 "syntactic.y"
+{ yyval = new Bro(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 43:
-//#line 67 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brno(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 67 "syntactic.y"
+{ yyval = new Brno(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 44:
-//#line 68 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brz(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 68 "syntactic.y"
+{ yyval = new Brno(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 45:
-//#line 69 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brz(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 69 "syntactic.y"
+{ yyval = new Brz(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 46:
-//#line 70 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brnz(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 70 "syntactic.y"
+{ yyval = new Brz(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 47:
-//#line 71 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brnz(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 71 "syntactic.y"
+{ yyval = new Brnz(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 48:
-//#line 72 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brs(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 72 "syntactic.y"
+{ yyval = new Brnz(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 49:
-//#line 73 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brs(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 73 "syntactic.y"
+{ yyval = new Brs(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 50:
-//#line 74 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brns(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
+//#line 74 "syntactic.y"
+{ yyval = new Brs(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 51:
-//#line 75 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Brns(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 75 "syntactic.y"
+{ yyval = new Brns(lexicon.getLine(), lexicon.getColumn(), (Expression)val_peek(0)); }
 break;
 case 52:
-//#line 78 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new Register(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 76 "syntactic.y"
+{ yyval = new Brns(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 53:
-//#line 80 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new IntegerLiteral(lexicon.getLine(), lexicon.getColumn(), (Integer)val_peek(0)); }
+//#line 79 "syntactic.y"
+{ yyval = new Register(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
 case 54:
-//#line 81 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
-{ yyval = new HexLiteral(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+//#line 81 "syntactic.y"
+{ yyval = new IntegerLiteral(lexicon.getLine(), lexicon.getColumn(), (Integer)val_peek(0)); }
 break;
 case 55:
-//#line 82 "../../src/main/java/yiplay/language/syntactic/syntactic.y"
+//#line 82 "syntactic.y"
+{ yyval = new HexLiteral(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
+break;
+case 56:
+//#line 83 "syntactic.y"
 { yyval = new BinaryLiteral(lexicon.getLine(), lexicon.getColumn(), (String)val_peek(0)); }
 break;
-//#line 729 "Parser.java"
+//#line 736 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

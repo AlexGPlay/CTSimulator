@@ -6,6 +6,7 @@ import yiplay.language.Compiler;
 import yiplay.language.errorManagement.ErrorManager;
 import yiplay.tc.TeoricalComputer;
 import yiplay.util.observer.GPRObserver;
+import yiplay.util.observer.IBObserver;
 import yiplay.util.observer.MemoryObserver;
 
 public class LogicFacade {
@@ -50,6 +51,10 @@ public class LogicFacade {
 	
 	public void registerGPRObserver(GPRObserver observer) {
 		tc.registerGPRObserver(observer);
+	}
+	
+	public void registerIBObserver(IBObserver observer) {
+		tc.registerIBObserver(observer);
 	}
 	
 }
